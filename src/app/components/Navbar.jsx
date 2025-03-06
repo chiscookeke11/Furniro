@@ -68,7 +68,7 @@ const Navbar = () => {
      <ul className='flex items-center gap-5 ' >
       {iconLinks.map((iconLink, index) => (
         <Link key={index} href={iconLink.url} > 
-        <li className={`mx-2 ${index + 1 === 4 ? "block" : "hidden md:block" } `} > {iconLink.icon} </li>
+        <li className={`mx-2 text-[#000000] ${index + 1 === 4 ? "block" : "hidden md:block" } `} > {iconLink.icon} </li>
          </Link>
       ))}
       <button onClick={()=> {setOpenMobileMenu(true)}} className='cursor-pointer block lg:hidden ' >
@@ -89,7 +89,13 @@ const Navbar = () => {
     </Link>
   ))
 }
-      
+      <ul  className='flex items-center mt-5 ' >
+      {iconLinks.map((iconLink, index) => (
+        <Link key={index} href={iconLink.url} > 
+        <li className={`mx-1 text-[#FFF3E3] hover:text-white ${index + 1 != 4 ? "block" : "hidden md:block" } `} > {iconLink.icon} </li>
+         </Link>
+      ))}
+      </ul>
 
      </ul>
 
