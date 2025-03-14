@@ -51,27 +51,27 @@ const Navbar = () => {
 
 
   return (
-   <header className='w-full flex items-center justify-between bg-white px-[5%] py-[2%]  ' >
+   <header className='font-poppins w-full flex items-center justify-between bg-white px-[5%] py-[2%] shadow-lg  ' >
      
-     <Image src="/logo/logo.svg" alt='logo' height={100} width={100} />
+     <Link href="/" ><Image src="/logo/logo.svg" alt='logo' height={100} width={150} /></Link>
 
-     <ul className=' hidden lg:flex items-center gap-8 ' >
+     <ul className=' hidden lg:flex items-center gap-6 ' >
 {
   navLinks.map((navLink, index) => (
     <Link key={index} href={navLink.url} >
-      <li className='mx-2 text-base font-medium text-[#000000] hover:text-[#B88E2F] transition-all duration-300 ease-in-out ' > {navLink.label} </li>
+      <li className='mx-2 text-lg font-medium text-[#000000] hover:text-[#B88E2F] transition-all duration-300 ease-in-out ' > {navLink.label} </li>
     </Link>
   ))
 }
      </ul>
 
-     <ul className='flex items-center gap-5 ' >
+     <ul className='flex items-center gap-3 ' >
       {iconLinks.map((iconLink, index) => (
         <Link key={index} href={iconLink.url} > 
-        <li className={`mx-2 text-[#000000] ${index + 1 === 4 ? "block" : "hidden md:block" } `} > {iconLink.icon} </li>
+        <li className={`mx-2 text-[#000000] hover:text-[#B88E2F] transition-all duration-300 ease-in-out  ${index + 1 === 4 ? "block" : "hidden md:block" } `} > {iconLink.icon} </li>
          </Link>
       ))}
-      <button onClick={()=> {setOpenMobileMenu(true)}} className='cursor-pointer block lg:hidden ' >
+      <button onClick={()=> {setOpenMobileMenu(true)}} className='cursor-pointer block lg:hidden  text-[#000000] ' >
         <Menu/>
       </button>
      </ul>
