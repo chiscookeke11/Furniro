@@ -78,7 +78,13 @@ const Navbar = () => {
 
 
 
-     <ul className={`w-full fixed top-0 left-0 bg-[#B88E2F] h-screen transition duration-300 ease-in-out flex flex-col gap-3.5 items-center justify-center ${openMobileMenu? "translate-y-0" : "translate-y-[-100%] "} `} >
+
+
+
+
+
+{/* mobile menu  */}
+     <ul className={`w-full z-10 fixed top-0 left-0 bg-[#B88E2F] h-screen transition duration-300 ease-in-out flex flex-col gap-3.5 items-center justify-center ${openMobileMenu? "translate-y-0" : "translate-y-[-100%] "} `} >
       <button onClick={()=> setOpenMobileMenu(false)} className='absolute top-5 right-7 cursor-pointer ' >
         <X className='text-white ' size={30} />
       </button>
