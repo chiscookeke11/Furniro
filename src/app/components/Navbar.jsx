@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const navLinks = [
     {
-      label: "Home",
+      label: "home",
       url: "home",
     },
     {
