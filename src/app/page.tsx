@@ -8,10 +8,10 @@ export default function Home() {
   return (
     <>
 
-    <WalletProvider>
+  
       <Navbar />
       <HomeHero />
-      </WalletProvider>
+   
     </>
   );
 }
