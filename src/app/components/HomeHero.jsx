@@ -1,4 +1,3 @@
-import { ConnectButton } from "@suiet/wallet-kit";
 import React from "react";
 
 const HomeHero = () => {
@@ -20,7 +19,6 @@ const HomeHero = () => {
           BUY NOW
         </button>
         <div>
-  <ConnectButton  iconUrl="/fallback-icon.png" />
 </div>
 
       </div>
