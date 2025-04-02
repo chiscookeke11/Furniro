@@ -1,4 +1,4 @@
-import RangeCardData from "data/Mockdata";
+import { RangeCardData } from "data/Mockdata";
 import Image from "next/image";
 
 
