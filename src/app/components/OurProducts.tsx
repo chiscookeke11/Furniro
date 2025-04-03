@@ -36,7 +36,6 @@ description={card.description}
 image={card.image}
 price={card.price}
 newPrice={card.newPrice}
-discount={card.isDiscounted}
 />
     ))
 }
