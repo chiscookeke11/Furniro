@@ -50,8 +50,8 @@ export default function ProductCard({ image, furnitureName, description, price, 
                 <h2 className="text-[#3A3A3A] font-semibold text-2xl "  >{furnitureName} </h2>
                 <p className=" text-[#898989] text-base font-medium "  >{description} </p>
                 <div className="w-full flex items-center gap-4 " >
-                    <h2 className=" text-[#3A3A3A] text-xl font-semibold  "  >Rp {newPrice === 0 ? price : newPrice} </h2>
-                    <h3 className="text-base font-normal text-[#B0B0B0] line-through " > {newPrice > 0 ? ` Rp  ${price}` : null}</h3></div>
+                    <h2 className=" text-[#3A3A3A] text-xl font-semibold  "  >Rp {newPrice === 0 ? price.toLocaleString() : newPrice.toLocaleString()} </h2>
+                    <h3 className="text-base font-normal text-[#B0B0B0] line-through " > {newPrice > 0 ? ` Rp  ${price.toLocaleString()}` : null}</h3></div>
             </div>
 
 
