@@ -24,10 +24,10 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
     return (
 
-        <div className="bg-[#F4F5F7] w-[160px] md:w-full md:max-w-[285px] md:max-h-[446px] relative flex flex-col items-stretch justify-between cursor-pointer overflow-hidden group  "  >
+        <div className="bg-[#F4F5F7] w-[160px] md:w-full md:max-w-[285px] md:h-[446px] relative flex flex-col items-stretch justify-between cursor-pointer overflow-hidden group  "  >
 
 
-            <div className=" w-full h-[67.5%] relative "  >
+            <div className=" w-full h-[67.5%] relative flex items-center justify-center "  >
                 <Image src={image} alt={`${furnitureName} image `} height={100} width={100} className="w-full h-full object-cover " />
 
 
