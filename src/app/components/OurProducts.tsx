@@ -1,17 +1,28 @@
 "use client"
 
-import { ProductCardData } from "data/Mockdata";
 import ProductCard from "./ui/ProductCard";
 import { useEffect, useState } from "react";
 import { supabase } from "utils/supabaseClient";
 
 
-export default function OurProducts() {
-    const [tableData, setTableData] = useState([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null >(null);
 
-    const [sliceValue, setSlicevalue] = useState(8);
+
+interface Furniture {
+    id: number;
+    name: string;
+    description: string;
+    image_url: string;
+    price: number;
+    new_price: number;
+  }
+
+
+export default function OurProducts() {
+    const [tableData, setTableData] = useState<Furniture[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<boolean >(false);
+
+    const [sliceValue, setSlicevalue] = useState(4);
 
     const increaseSlice = () => {
         setSlicevalue((prevSliceValue) => prevSliceValue + 4);
@@ -29,7 +40,7 @@ export default function OurProducts() {
 
             if (error) {
                 console.log('error fetching data:', error)
-                setTableData(null)
+                setTableData([])
                 setLoading(false)
                 setError(true)
             }
@@ -46,7 +57,7 @@ export default function OurProducts() {
     }, [])
 
 
-    // console.log(tableData.name)
+
 
 
 
@@ -78,7 +89,7 @@ export default function OurProducts() {
 ) : loading ? (
   <p className="text-gray-500 text-center">Loading furniture data...</p>
 ) : (
-  tableData?.map((card, index) => (
+  tableData.slice(0, sliceValue).map((card, index) => (
     <ProductCard
       key={index}
       furnitureName={card.name}
@@ -86,7 +97,6 @@ export default function OurProducts() {
       image={card.image_url}
       price={card.price}
       newPrice={card.new_price}
-      loading={false} // or remove this prop if no longer needed
     />
   ))
 )}
@@ -94,7 +104,11 @@ export default function OurProducts() {
 
        </div>
 
-       <button onClick={increaseSlice} className="font-poppins w-[245px] h-12 bg-white border-[1px] border-[#B88E2F] text-[#B88E2F] text-base font-semibold cursor-pointer  " >Show More</button>
+       <button disabled={loading || sliceValue >= tableData.length }
+        onClick={increaseSlice}
+         className="font-poppins w-[245px] h-12 bg-white border-[1px] border-[#B88E2F] text-[#B88E2F] text-base font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50  " >
+            Show More
+            </button>
         </section>
     )
 }
