@@ -81,7 +81,7 @@ export default function OurProducts() {
 
       <div className="w-full  h-fit"  >
         {error ? (
-          <p className="text-red-500">Error Fetching Data</p>
+          <p className="text-red-500 text-center ">Error Fetching Data</p>
         ) : loading ? (
           <div className="flex items-center justify-center w-full  ">
             <div className="h-10 w-10 animate-spin rounded-full border-4 border-[#B88E2F] border-t-transparent"></div>

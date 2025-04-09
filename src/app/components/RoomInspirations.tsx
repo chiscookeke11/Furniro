@@ -1,7 +1,24 @@
+"use client "
+
+
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import AutoPlay from './carosuel';
 
 
 
 export default function RoomInspirations() {
+
+
+
+
+
+
+
+
+
+
     return (
         <section className="font-poppins  w-full bg-[#FCF8F3] px-10 py-10 flex items-center justify-center gap-6  min-h-[50vh] " >
 
@@ -16,9 +33,16 @@ export default function RoomInspirations() {
 
 
 
-            <div className="slides bg-green-200 w-full max-w-[1196px]">
-                sides
+            <div className="slides bg-black w-full max-w-[1196px]">
+            <AutoPlay/>
+
             </div>
+
+
+
+
+
+
         </section>
     )
 }

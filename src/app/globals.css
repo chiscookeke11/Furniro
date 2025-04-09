@@ -25,3 +25,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.slick-list, .slick-slider, .slick-track {
+  padding: 3rem 0;
+}
+.center  .slick-center{
+  background: red;
+  pointer-events: all;
+}
