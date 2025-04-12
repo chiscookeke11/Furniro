@@ -1,60 +1,18 @@
 "use client"
 
+import { useFurniroContext } from "context/FurniroContext";
 import ProductCard from "./ui/ProductCard";
-import { useEffect, useState } from "react";
-import { supabase } from "utils/supabaseClient";
 
 
 
 
-interface Furniture {
-  id: number;
-  name: string;
-  description: string;
-  image_url: string;
-  price: number;
-  new_price: number;
-}
+
 
 
 export default function OurProducts() {
-  const [tableData, setTableData] = useState<Furniture[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
 
 
-
-
-
-  useEffect(() => {
-    const fetchFurnitureData = async () => {
-
-      const { data, error } = await supabase
-        .from('furniture')
-        .select('*')
-
-
-      if (error) {
-        console.log('error fetching data:', error)
-        setTableData([])
-        setLoading(false)
-        setError(true)
-      }
-
-      if (data) {
-        setTableData(data)
-        setError(false)
-        setLoading(false)
-      }
-    }
-
-
-    fetchFurnitureData()
-  }, [])
-
-
-
-
+  const { error, loading, tableData } = useFurniroContext();
 
 
 

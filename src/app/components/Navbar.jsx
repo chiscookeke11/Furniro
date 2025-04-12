@@ -1,5 +1,4 @@
 "use client";
-import { connect, disconnect, ConnectedStarknetWindowObject } from "@argent/get-starknet";
 import { Heart, Menu, Search, ShoppingCart, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,7 +26,7 @@ const Navbar = () => {
 
      <Link href="/" ><Image src="/logo/logo.svg" alt='logo' height={100} width={150} /></Link>
 
-     <button className='py-2 px-3 bg-blue-600 rounded-sm cursor-pointer '  >Connect Wallet</button>
+
 
      <ul className=' hidden lg:flex items-center gap-6 ' >
 {
