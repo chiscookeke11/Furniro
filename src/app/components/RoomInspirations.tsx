@@ -1,10 +1,9 @@
 "use client "
 
+import { useFurniroContext } from "context/FurniroContext"
+import InspirationSlider from "./InspirationSlider"
 
 
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import AutoPlay from './carosuel';
 
 
 
@@ -12,6 +11,8 @@
 
 export default function RoomInspirations() {
 
+
+    const {tableData} = useFurniroContext()
 
 
 
@@ -22,7 +23,7 @@ export default function RoomInspirations() {
 
 
     return (
-        <section className="font-poppins  w-full bg-[#FCF8F3] px-10 py-10 flex items-center justify-center gap-6  min-h-[50vh] " >
+        <section className="font-poppins  w-full bg-[#FCF8F3] px-10 py-10 flex-col flex lg:flex-row  items-center justify-center gap-6  min-h-[50vh] " >
 
 
 
@@ -34,11 +35,9 @@ export default function RoomInspirations() {
             </div>
 
 
+<InspirationSlider Images={tableData.slice(0, 5)} />
 
-            {/* <div className="slides bg-black w-full max-w-[1196px]">
-            <AutoPlay/>
 
-            </div> */}
 
 
 
