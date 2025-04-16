@@ -1,3 +1,4 @@
+import { InspirationItem } from "interfaces/InspirationItem";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react"
@@ -5,10 +6,14 @@ import { useState } from "react"
 
 
 
+interface InspirationSliderProps {
+    Images: InspirationItem[];
+}
 
 
 
-export default function InspirationSlider({ Images }) {
+
+export default function InspirationSlider({ Images } : InspirationSliderProps) {
 
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,6 +27,7 @@ export default function InspirationSlider({ Images }) {
     const nextSlide = () => {
         setCurrentIndex((prev) => (prev === Images.length - 1 ? 0 : prev + 1));
     };
+
 
 
 
@@ -69,7 +75,7 @@ export default function InspirationSlider({ Images }) {
                                         src={img.image_url}
                                         alt="slide image"
                                         fill
-                                        className="object-cover"
+                                        className="object-contain md:object-cover"
                                     />
                                 </div>
 
@@ -88,14 +94,14 @@ export default function InspirationSlider({ Images }) {
 
                 <div className="h-full md:flex w-full  flex-col gap-5 max-w-[400px] hidden " >
 
-                    <div className="nextSlide h-[70%] relative w-[350px] bg-orange-300 ">
+                    <div className="nextSlide h-[450px] relative w-[350px] bg-orange-300  ">
 
                         {Images[nextView]?.image_url? <Image
                             src={Images[nextView]?.image_url || Images[0]?.image_url}
                             alt="next preview"
                             width={100}
                             height={100}
-                            className="h-full w-full"
+                            className="h-full w-full object-cover"
                         /> : "loading"
                         }
 
@@ -106,7 +112,9 @@ export default function InspirationSlider({ Images }) {
                     <div className="flex items-center justify-center gap-2">
                         {
                             Images.map((_, index) => (
-                                <button onClick={() => setCurrentIndex(index)} key={index} className={` cursor-pointer w-3 h-3 rounded-full transition-all duration-300 ${ currentIndex === index ? "bg-red-600" : "bg-green-300" } `} ></button>
+                                <button onClick={() => setCurrentIndex(index)} key={index} className={` cursor-pointer  rounded-full transition-all duration-300 flex items-center justify-center bg-white border-[2px]  ${ currentIndex === index ? " border-[#B88E2F] w-5 h-5 p-1 " : " border-white w-3 h-3" } `} >
+                                    <span className={`block w-full h-full rounded-full transition-all duration-300   ${currentIndex === index ? "bg-[#B88E2F]" : "bg-[#B88E2F]" } `} ></span>
+                                </button>
                             ))
                         }
                     </div>
@@ -128,7 +136,7 @@ export default function InspirationSlider({ Images }) {
 
             <button
                 onClick={nextSlide}
-                className="absolute top-1/2 right-2 -translate-y-1/2 bg-white p-2 rounded-full  z-10 cursor-pointer text-[#B88E2F] h-12 w-12 flex items-center justify-center shadow-[0px_4px_14px_1px_rgba(0,0,0,0.16)]   "
+                className="hidden md:flex absolute top-1/2 right-2 -translate-y-1/2 bg-white p-2 rounded-full  z-10 cursor-pointer text-[#B88E2F] h-12 w-12  items-center justify-center shadow-[0px_4px_14px_1px_rgba(0,0,0,0.16)]   "
             >
                 <ChevronRight />
             </button>

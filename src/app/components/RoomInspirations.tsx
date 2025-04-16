@@ -1,7 +1,11 @@
 "use client "
 
-import { useFurniroContext } from "context/FurniroContext"
+
+import { useEffect, useState } from "react";
 import InspirationSlider from "./InspirationSlider"
+import { InspirationItem } from "interfaces/InspirationItem";
+import { supabase } from "utils/supabaseClient";
+import Loader from "./ui/Loader";
 
 
 
@@ -11,8 +15,34 @@ import InspirationSlider from "./InspirationSlider"
 
 export default function RoomInspirations() {
 
+    const [roomInspirationsData, setRoomInspirationData] = useState<InspirationItem[]>([])
+    const [error, setError] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
-    const {tableData} = useFurniroContext()
+
+
+
+    useEffect(() => {
+        const fetchRoomInspirationData = async () => {
+            const { error, data } = await supabase.from('room_inspiration').select('*');
+
+            if (error) {
+                console.error("Error fetching room inspirations:", error);
+                setRoomInspirationData([]);
+                setError(true);
+            }
+            else if (data) {
+                setRoomInspirationData(data || []);
+                setError(false)
+            }
+            setLoading(false)
+        }
+        fetchRoomInspirationData();
+    }, []);
+
+
+
+
 
 
 
@@ -35,7 +65,8 @@ export default function RoomInspirations() {
             </div>
 
 
-<InspirationSlider Images={tableData.slice(0, 5)} />
+       {error ?  (
+          <p className="text-red-500 text-center ">Error Fetching Data</p>) : loading ? ( <Loader/> ): (<InspirationSlider Images={roomInspirationsData.slice(0, 5)} />)}
 
 
 

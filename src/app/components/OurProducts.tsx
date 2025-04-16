@@ -2,6 +2,7 @@
 
 import { useFurniroContext } from "context/FurniroContext";
 import ProductCard from "./ui/ProductCard";
+import Loader from "./ui/Loader";
 
 
 
@@ -41,9 +42,7 @@ export default function OurProducts() {
         {error ? (
           <p className="text-red-500 text-center ">Error Fetching Data</p>
         ) : loading ? (
-          <div className="flex items-center justify-center w-full  ">
-            <div className="h-10 w-10 animate-spin rounded-full border-4 border-[#B88E2F] border-t-transparent"></div>
-          </div>
+          <Loader/>
         ) :
 
           <div className="w-full h-fit  grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center" >
