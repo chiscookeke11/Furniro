@@ -3,6 +3,7 @@
 import { useFurniroContext } from "context/FurniroContext";
 import ProductCard from "./ui/ProductCard";
 import Loader from "./ui/Loader";
+import Link from "next/link";
 
 
 
@@ -65,10 +66,13 @@ export default function OurProducts() {
 
       </div>
 
+
+<Link href={"/shop"} >
       <button
         className="font-poppins w-[245px] h-12 bg-white border-[1px] border-[#B88E2F] text-[#B88E2F] text-base font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50  " >
         Show More
       </button>
+      </Link>
     </section>
   )
 }
