@@ -53,7 +53,7 @@ export default function RoomInspirations() {
 
 
     return (
-        <section className="font-poppins  w-full bg-[#FCF8F3] px-10 py-10 flex-col flex lg:flex-row  items-center justify-center gap-6  min-h-[50vh] " >
+        <section className="font-poppins  w-full bg-[#FCF8F3] px-10 py-10 flex-col flex lg:flex-row  items-center justify-between gap-6  min-h-[50vh]  " >
 
 
 
@@ -63,6 +63,8 @@ export default function RoomInspirations() {
                 <p className="text-[#616161] text-base font-medium  "  >Our designer already made a lot of beautiful prototipe of rooms that inspire you</p>
                 <button className=" bg-[#B88E2F] h-12 py-3 px-5 text-[#FFFFFF] text-base font-semibold w-[176px] cursor-pointer "  >Explore more</button>
             </div>
+
+
 
 
        {error ?  (
