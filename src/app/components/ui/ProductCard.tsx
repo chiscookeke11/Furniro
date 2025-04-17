@@ -57,7 +57,7 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
 
 
-            <div className="overlay absolute bottom-0 left-0 w-full h-0 bg-[#3A3A3A]/75  flex flex-col items-center justify-center gap-6  z-10 cursor-default overflow-hidden group-hover:h-full transition-all duration-400 ease-in-out ">
+            <div className="overlay absolute bottom-0 left-0 w-full h-0 bg-[#3A3A3ABF]  flex flex-col items-center justify-center gap-6  z-10 cursor-default overflow-hidden group-hover:h-full transition-all duration-400 ease-in-out ">
 
                 <button className=" bg-[#ffffff] w-full   max-w-[202px] text-xs md:text-base font-semibold text-[#B88E2F] h-full max-h-[48px] cursor-pointer transform hover:scale-90 transition-all ease-in-out duration-150 "  >Add to cart</button>
 

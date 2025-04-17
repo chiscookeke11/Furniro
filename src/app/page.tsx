@@ -4,6 +4,7 @@ import HomeHero from "./components/HomeHero";
 import Range from "./components/Range";
 import OurProducts from "./components/OurProducts";
 import RoomInspirations from "./components/RoomInspirations";
+import SharedSetups from "./components/SharedSetups";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Range/>
       <OurProducts/>
       <RoomInspirations/>
+      <SharedSetups/>
     </div>
   );
 }
