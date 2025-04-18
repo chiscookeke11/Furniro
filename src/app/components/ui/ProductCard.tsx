@@ -16,7 +16,7 @@ interface ProductCardProps {
 export default function ProductCard({ image, furnitureName, description, price, newPrice}: ProductCardProps) {
 
 
-    const percentageDiscount = (newPrice/price) * 100
+    const percentageDiscount = ((price - newPrice)/price) * 100
 
 
 
@@ -34,8 +34,8 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
 
                 {
-                    percentageDiscount > 0 ? <span className=" flex items-center justify-center absolute bg-[#E97171] w-12 h-12 rounded-full text-[#FFFFFF] text-base font-medium top-5 right-3  " >
-                        <p>{Math.floor(percentageDiscount)}%</p>
+                    percentageDiscount < 100 ? <span className=" flex items-center justify-center absolute bg-[#E97171] w-12 h-12 rounded-full text-[#FFFFFF] text-base font-medium top-5 right-3  " >
+                        <p>{Math.round(percentageDiscount)}%</p>
                     </span> : <span className=" flex items-center justify-center absolute bg-[#2EC1AC] w-12 h-12 rounded-full text-[#FFFFFF] text-base font-medium top-5 right-3   " >
                         <p>New</p>
                     </span>
