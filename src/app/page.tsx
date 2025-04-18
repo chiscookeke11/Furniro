@@ -5,6 +5,7 @@ import Range from "./components/Range";
 import OurProducts from "./components/OurProducts";
 import RoomInspirations from "./components/RoomInspirations";
 import SharedSetups from "./components/SharedSetups";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <OurProducts/>
       <RoomInspirations/>
       <SharedSetups/>
+      <Footer/>
     </div>
   );
 }

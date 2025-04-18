@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 
 export default function Page() {
-
+    const [grid, setGrid] = useState<boolean>(true);
     const { tableData, error, loading, } = useFurniroContext();
     const itemsPerPage = 16;
     const totalPages = Math.ceil(tableData.length / itemsPerPage);
@@ -50,8 +50,10 @@ export default function Page() {
                 totalFurniture={tableData.length}
                 displayStart={displayStart}
                 displayEnd={displayEnd}
+                setGrid={setGrid}
+                grid={grid}
             />
-            <section className="w-full h-fit  grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center  px-4 py-18">
+            <section className={`w-full h-fit   px-4 py-18 ${grid ? "grid  grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center " : "flex flex-col gap-4 "} `}>
 
 
                 {tableData.slice(startIndex, endIndex).map((card, index) => (
@@ -96,7 +98,7 @@ export default function Page() {
                 {error ? null : loading ? null : <button onClick={handleNext} disabled={currentPage === totalPages} className={`self-center  h-[30px] px-5 py-4 flex items-center justify-center md:h-[60px] md:w-[98px] bg-[#F9F1E7] rounded-[10px] text-base md:text-lg font-normal  text-[#000000] hover:bg-[#B88E2F] transition-all ease-in-out duration-150 hover:text-white  ${currentPage === totalPages ? "bg-[#c0c0c0] cursor-not-allowed pointer-events-none " : "cursor-pointer"} `} >Next</button>}
             </div>
             <ServiceHighlights />
-            <Footer/>
+            <Footer />
         </div>
     )
 }

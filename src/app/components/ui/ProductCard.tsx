@@ -13,10 +13,10 @@ interface ProductCardProps {
 }
 
 
-export default function ProductCard({ image, furnitureName, description, price, newPrice}: ProductCardProps) {
+export default function ProductCard({ image, furnitureName, description, price, newPrice }: ProductCardProps) {
 
 
-    const percentageDiscount = ((price - newPrice)/price) * 100
+    const percentageDiscount = ((price - newPrice) / price) * 100
 
 
 
@@ -34,7 +34,7 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
 
                 {
-                    percentageDiscount < 100 ? <span className=" flex items-center justify-center absolute bg-[#E97171] w-12 h-12 rounded-full text-[#FFFFFF] text-base font-medium top-5 right-3  " >
+                    percentageDiscount < 100 && percentageDiscount !== 0 ? <span className=" flex items-center justify-center absolute bg-[#E97171] w-12 h-12 rounded-full text-[#FFFFFF] text-base font-medium top-5 right-3  " >
                         <p>{Math.round(percentageDiscount)}%</p>
                     </span> : <span className=" flex items-center justify-center absolute bg-[#2EC1AC] w-12 h-12 rounded-full text-[#FFFFFF] text-base font-medium top-5 right-3   " >
                         <p>New</p>
@@ -51,7 +51,7 @@ export default function ProductCard({ image, furnitureName, description, price, 
                 <p className=" text-[#898989] text-sm md:text-base font-medium "  >{description} </p>
                 <div className="w-full flex flex-col md:flex-row items-start md:items-center gap-4  " >
                     <h2 className=" text-[#3A3A3A] text-sm md:text-lg font-semibold whitespace-nowrap  "  >Rp {newPrice === 0 ? price.toLocaleString() : newPrice.toLocaleString()} </h2>
-                    <h3 className="md:text-base text-xs font-normal text-[#B0B0B0] line-through  whitespace-nowrap " > {newPrice > 0 ? ` Rp  ${price.toLocaleString()}` : null}</h3></div>
+                    <h3 className="md:text-base text-xs font-normal text-[#B0B0B0] line-through  whitespace-nowrap " > {newPrice > 0 && newPrice !== price ? ` Rp  ${price.toLocaleString()}` : null}</h3></div>
             </div>
 
 
@@ -64,8 +64,8 @@ export default function ProductCard({ image, furnitureName, description, price, 
                 <div className="w-full flex flex-col md:flex-row items-center justify-center gap-5 " >
 
                     <button className=" text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150 "   ><Share2 size={15} /> Share</button>
-                    <button className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><ArrowDownUp size={15}/> Compare</button>
-                    <button className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><Heart size={15}/> Like</button>
+                    <button className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><ArrowDownUp size={15} /> Compare</button>
+                    <button className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><Heart size={15} /> Like</button>
 
                 </div>
 
