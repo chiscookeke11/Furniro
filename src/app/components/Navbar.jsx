@@ -8,8 +8,8 @@ import React, { useState } from "react";
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const navLinks = [
-    { label: "Home", url: "home" },
-    { label: "Shop", url: "home" },
+    { label: "Home", url: "/" },
+    { label: "Shop", url: "/shop" },
     { label: "About", url: "home" },
     { label: "Contact", url: "home" },
   ];
