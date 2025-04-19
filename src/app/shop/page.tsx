@@ -17,7 +17,7 @@ import { useState } from 'react';
 export default function Page() {
     const [grid, setGrid] = useState<boolean>(true);
     const { tableData, error, loading, } = useFurniroContext();
-    const itemsPerPage = 16;
+    const  [itemsPerPage, setItemsPerPage] = useState(16)
     const totalPages = Math.ceil(tableData.length / itemsPerPage);
     const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -52,6 +52,8 @@ export default function Page() {
                 displayEnd={displayEnd}
                 setGrid={setGrid}
                 grid={grid}
+                itemsPerPage={itemsPerPage}
+                setItemsPerPage={setItemsPerPage}
             />
             <section className={`w-full h-fit   px-4 py-18 ${grid ? "grid  grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center " : "flex flex-col gap-4 "} `}>
 
