@@ -1,7 +1,7 @@
 "use client"
 
 import { BetweenHorizontalEnd, ChevronDown, ChevronUp, LayoutGrid, SlidersHorizontal } from "lucide-react";
-import { useState } from "react";
+
 
 
 interface StatsBarProps{
@@ -18,19 +18,6 @@ interface StatsBarProps{
 export default function StatsBar({totalFurniture, displayStart, displayEnd, setGrid, grid, itemsPerPage, setItemsPerPage} : StatsBarProps) {
 
 
-  const [inputValue, setInputValue] = useState(
-    {
-      showValue: itemsPerPage,
-      // sortValue:
-    }
-  )
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputValue(values => ({...values, [name]: value}))
-    setItemsPerPage(inputValue.showValue)
-  }
 
   const increaseDisplay = () => {
     if (itemsPerPage != totalFurniture ) {
