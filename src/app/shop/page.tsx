@@ -9,7 +9,7 @@ import StatsBar from "app/components/StatsBar";
 import Loader from "app/components/ui/Loader";
 import ProductCard from "app/components/ui/ProductCard";
 import { useFurniroContext } from "context/FurniroContext";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -27,6 +27,13 @@ export default function Page() {
     const displayStart = startIndex + 1;
     const displayEnd = Math.min(endIndex, tableData.length)
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
 
 
     const handleNext = () => {
@@ -35,6 +42,10 @@ export default function Page() {
             setCurrentPage((prev) => prev + 1)
         }
     }
+
+    useEffect(() => {
+        scrollToTop();
+    }, [currentPage])
 
 
 

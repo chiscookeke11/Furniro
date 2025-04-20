@@ -42,11 +42,11 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
 
     return (
-     <section className="bg-[#F9F1E7] w-full h-[100px] flex items-center justify-between gap-10 text-[#000000] px-7 py-4 " >
+     <section className="bg-[#F9F1E7] w-full min-h-[100px] flex flex-col md:flex-row items-center justify-between gap-10 text-[#000000] px-7 py-4 " >
 
 
         {/* left part  */}
-        <div className="flex basis-1/2 min-w-sm gap-8 items-center justify-start   pl-[5%] " >
+        <div className="flex w-fit  whitespace-nowrap pr-[5%] bg-red-800 min-w-[250px] gap-8 items-center justify-start   pl-[4%] " >
         <div className="flex items-center justify-center  gap-7" >
            <button className="flex items-center justify-center gap-5 cursor-pointer text-lg font-normal text-[#000000] "  ><SlidersHorizontal size={28} className="hover:scale-110 transform transition-all ease-in-out duration-150 " /> Filter</button>
            <button onClick={() => setGrid(true)}  className={`flex items-center justify-center gap-5 cursor-pointer `} ><LayoutGrid  size={28} className={`hover:scale-110 transform transition-all ease-in-out duration-150 ${grid? "scale-110" : null } `}  /> </button>
@@ -62,13 +62,13 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
 
         {/* right part  */}
-        <div className=" flex items-center justify-evenly gap-6 " >
+        <div className=" w-fit flex items-center justify-evenly gap-6 " >
           <div className='flex items-center' > <span>Show</span>
-              <div className="flex items-center justify-between bg-[#FFFFFF] h-[55px] w-[55px] outline-none border-none mx-5 py-2 px-2 text-center  " >
-                <span className="   ">{itemsPerPage} </span>
+              <div className="flex items-center justify-between bg-[#FFFFFF] min-h-[55px] min-w-[55px] outline-none border-none mx-5 py-2 px-2 text-center  " >
+                <span className="cursor-not-allowed   ">{itemsPerPage} </span>
                 <div className=" flex flex-col items-center justify-evenly " >
                   <button onClick={increaseDisplay} className="cursor-pointer   " > <ChevronUp size={15}/> </button>
-                  <button onClick={decreaseDisplay}><ChevronDown  size={15}/> </button>
+                  <button onClick={decreaseDisplay}  className="cursor-pointer   " ><ChevronDown  size={15}/> </button>
                 </div>
               </div>
 
