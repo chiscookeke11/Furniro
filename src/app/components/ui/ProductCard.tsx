@@ -1,5 +1,6 @@
 import { ArrowDownUp, Heart, Share2 } from "lucide-react";
 import Image from "next/image";
+import { RWebShare } from "react-web-share";
 
 
 
@@ -63,7 +64,20 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
                 <div className="w-full flex flex-col md:flex-row items-center justify-center gap-5 " >
 
-                    <button className=" text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150 "   ><Share2 size={15} /> Share</button>
+
+
+                <RWebShare
+        data={{
+          text: "Checkout this furniture",
+          url: "/shop",
+          title: furnitureName,
+        }}
+        onClick={() => console.log("shared successfully!")}
+      >
+         <button className=" text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150 "   ><Share2 size={15} /> Share</button>
+      </RWebShare>
+
+
                     <button className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><ArrowDownUp size={15} /> Compare</button>
                     <button className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><Heart size={15} /> Like</button>
 

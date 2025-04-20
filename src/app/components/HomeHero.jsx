@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const HomeHero = () => {
@@ -15,9 +16,9 @@ const HomeHero = () => {
           tellus, luctus nec ullamcorper mattis.
         </p>
 
-        <button className="bg-[#B88E2F] w-full max-w-[222px] text-white p-6 cursor-pointer text-sm md:text-base font-bold mt-5 md:mt-10 transform duration-200 ease-in-out hover:scale-95  ">
+      <Link href="/shop" >  <button className="bg-[#B88E2F] w-full max-w-[222px] text-white p-6 cursor-pointer text-sm md:text-base font-bold mt-5 md:mt-10 transform duration-200 ease-in-out hover:scale-95  ">
           BUY NOW
-        </button>
+        </button></Link>
         <div>
 </div>
 

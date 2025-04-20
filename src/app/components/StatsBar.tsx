@@ -4,6 +4,7 @@ import { BetweenHorizontalEnd, ChevronDown, ChevronUp, LayoutGrid, SlidersHorizo
 
 
 
+
 interface StatsBarProps{
     totalFurniture: number;
     displayStart: number;
@@ -47,6 +48,10 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
         {/* left part  */}
         <div className="flex w-fit  whitespace-nowrap pr-[5%] bg-red-800 min-w-[250px] gap-8 items-center justify-start   pl-[4%] " >
+
+
+
+
         <div className="flex items-center justify-center  gap-7" >
            <button className="flex items-center justify-center gap-5 cursor-pointer text-lg font-normal text-[#000000] "  ><SlidersHorizontal size={28} className="hover:scale-110 transform transition-all ease-in-out duration-150 " /> Filter</button>
            <button onClick={() => setGrid(true)}  className={`flex items-center justify-center gap-5 cursor-pointer `} ><LayoutGrid  size={28} className={`hover:scale-110 transform transition-all ease-in-out duration-150 ${grid? "scale-110" : null } `}  /> </button>
