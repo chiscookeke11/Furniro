@@ -1,6 +1,8 @@
 "use client"
 
+import { useFurniroContext } from "context/FurniroContext";
 import { BetweenHorizontalEnd, ChevronDown, ChevronUp, LayoutGrid, SlidersHorizontal } from "lucide-react";
+
 
 
 
@@ -18,6 +20,8 @@ interface StatsBarProps{
 
 export default function StatsBar({totalFurniture, displayStart, displayEnd, setGrid, grid, itemsPerPage, setItemsPerPage} : StatsBarProps) {
 
+
+  const {optionValue, setOptionValue, setLoading} = useFurniroContext();
 
 
   const increaseDisplay = () => {
@@ -40,6 +44,32 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
   }
 
 
+  const selectOptions = [
+    {
+      label: "Default",
+      value: "default",
+    },
+    {
+      label: "Living room",
+      value: "Living_room",
+    },
+    {
+      label: "Dining set",
+      value: "Dining_set",
+    },
+    {
+      label: "bedroom",
+      value: "bedroom",
+    },
+    ]
+
+    const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setLoading(true);
+      setOptionValue(event.target.value)
+    }
+
+
+
 
 
     return (
@@ -48,6 +78,8 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
         {/* left part  */}
         <div className="flex w-fit  whitespace-nowrap pr-[5%] bg-red-800 min-w-[250px] gap-8 items-center justify-start   pl-[4%] " >
+
+          {optionValue}
 
 
 
@@ -79,7 +111,15 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
 
 
-          Sort by <input type="text" placeholder="Default" className=" bg-[#FFFFFF] h-[55px] w-[188px] outline-none border-none mx-5  p-2 pl-[5%] "  />   </div>
+          Sort by
+
+           <select name="default" onChange={handleSelect} value={optionValue} className=" bg-[#FFFFFF] h-[55px] min-w-[188px] outline-none border-none mx-5  p-2 pl-[5%] cursor-pointer "  >
+            {selectOptions.map((option, index) => (
+              <option key={index} value={option.value} > {option.label} </option>
+            ))}
+           </select>
+
+            </div>
         </div>
      </section>
     )

@@ -10,6 +10,9 @@ interface FurniroContextType {
   setTableData: React.Dispatch<React.SetStateAction<Furniture[]>>;
   loading: boolean;
   error: boolean;
+  optionValue: string;
+  setOptionValue: React.Dispatch<React.SetStateAction<string>>;
+  setLoading:  React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // Provider props
@@ -25,10 +28,19 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
   const [tableData, setTableData] = useState<Furniture[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const [optionValue, setOptionValue] = useState("Default")
 
   useEffect(() => {
     const fetchFurnitureData = async () => {
-      const { data, error } = await supabase.from('furniture').select('*');
+
+      let query = supabase.from('furniture').select('*');
+
+      if (optionValue.toLowerCase() !== "default") {
+        query = query.eq('category', optionValue);
+      }
+
+
+      const { data, error } = await query;
 
       if (error) {
         console.error('Error fetching data:', error);
@@ -43,10 +55,10 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
     };
 
     fetchFurnitureData();
-  }, []);
+  }, [optionValue]);
 
   return (
-    <FurniroContext.Provider value={{ tableData, setTableData, loading, error }}>
+    <FurniroContext.Provider value={{ tableData, setTableData, loading, setLoading, error, optionValue, setOptionValue }}>
       {children}
     </FurniroContext.Provider>
   );

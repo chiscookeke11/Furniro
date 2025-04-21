@@ -1,9 +1,10 @@
 "use client"
-
-import { useFurniroContext } from "context/FurniroContext";
 import ProductCard from "./ui/ProductCard";
 import Loader from "./ui/Loader";
 import Link from "next/link";
+import { Furniture } from '../../interfaces/FurnitureInterface';
+import { useState, useEffect } from "react";
+import { supabase } from "utils/supabaseClient";
 
 
 
@@ -14,7 +15,41 @@ import Link from "next/link";
 export default function OurProducts() {
 
 
-  const { error, loading, tableData } = useFurniroContext();
+  const [heroTableData, setHeroTableData] = useState<Furniture[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<boolean>(false);
+
+
+
+     useEffect(() => {
+        const fetchFurnitureData = async () => {
+
+
+          const { data, error } = await supabase.from('furniture').select('*');
+
+          if (error) {
+            console.error('Error fetching data:', error);
+            setHeroTableData([]);
+            setError(true);
+          } else if (data) {
+            setHeroTableData(data);
+            setError(false);
+          }
+
+          setLoading(false);
+        };
+
+        fetchFurnitureData();
+      }, []);
+
+
+
+
+
+
+
+
+
 
 
 
@@ -48,7 +83,7 @@ export default function OurProducts() {
 
           <div className="w-full h-fit  grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center" >
             {
-              tableData.slice(0, 8).map((card, index) => (
+              heroTableData.slice(0, 8).map((card, index) => (
                 <ProductCard
                   key={index}
                   furnitureName={card.name}

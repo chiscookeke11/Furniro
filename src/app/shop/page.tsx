@@ -69,7 +69,9 @@ export default function Page() {
             <section className={`w-full h-fit   px-4 py-18 ${grid ? "grid  grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center " : "flex flex-col gap-4 "} `}>
 
 
-                {tableData.slice(startIndex, endIndex).map((card, index) => (
+              {
+                tableData?.length  < 1 ? "not available" :
+                ( tableData.slice(startIndex, endIndex).map((card, index) => (
                     <ProductCard
                         key={index}
                         furnitureName={card.name}
@@ -78,9 +80,8 @@ export default function Page() {
                         price={card.price}
                         newPrice={card.new_price}
                     />
-                ))}
-
-
+                )))
+              }
 
 
             </section>
