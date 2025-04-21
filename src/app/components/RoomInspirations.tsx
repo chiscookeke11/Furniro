@@ -24,7 +24,7 @@ export default function RoomInspirations() {
 
     useEffect(() => {
         const fetchRoomInspirationData = async () => {
-            const { error, data } = await supabase.from('room_inspiration').select('*');
+            const { error, data } = await supabase.from('furniture').select('*').eq('category', 'bedroom');
 
             if (error) {
                 console.error("Error fetching room inspirations:", error);
@@ -68,7 +68,7 @@ export default function RoomInspirations() {
 
 
        {error ?  (
-          <p className="text-red-500 text-center ">Error Fetching Data</p>) : loading ? ( <Loader/> ): (<InspirationSlider Images={roomInspirationsData.slice(0, 5)} />)}
+          <p className="text-red-500 text-center ">Error Fetching Data</p>) : loading ? ( <Loader/> ): (<InspirationSlider Images={roomInspirationsData.slice(0, 4)} />)}
 
 
 

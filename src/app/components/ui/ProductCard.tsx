@@ -1,6 +1,7 @@
 import { ArrowDownUp, Heart, Share2 } from "lucide-react";
 import Image from "next/image";
-import { RWebShare } from "react-web-share";
+
+
 
 
 
@@ -19,6 +20,23 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
     const percentageDiscount = ((price - newPrice) / price) * 100
 
+
+    const handleShare = async () => {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'My App',
+              text: 'Check out this cool app!',
+              url: window.location.href,
+            });
+            console.log('Thanks for sharing!');
+          } catch (err) {
+            console.error('Error sharing:', err);
+          }
+        } else {
+          alert('Sharing not supported in this browser.');
+        }
+      };
 
 
 
@@ -66,18 +84,8 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
 
 
-                <RWebShare
-        data={{
-          text: "Checkout this furniture",
-          url: "/shop",
-          title: furnitureName,
-        }}
-        onClick={() => console.log("shared successfully!")}
-      >
-         <button className=" text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150 "   ><Share2 size={15} /> Share</button>
-      </RWebShare>
 
-
+                    <button onClick={handleShare} className=" text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150 "   ><Share2 size={15} /> Share</button>
                     <button className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><ArrowDownUp size={15} /> Compare</button>
                     <button className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><Heart size={15} /> Like</button>
 
