@@ -33,12 +33,12 @@ export default function ServiceHighlights() {
 
 
     return (
-        <section className="w-full bg-[#FAF3EA] min-h-[270px] flex flex-col md:flex-row  items-center md:justify-evenly py-10 md:px-6 px-3 gap-7 " >
+        <section className="w-full bg-[#FAF3EA] min-h-[270px] flex flex-col md:flex-row  items-center md:justify-evenly py-10 md:px-6 px-3 gap-5 " >
 
 
 
             {highlights.map((highlight, index) => (
-                <div key={index} className="w-full max-w-[380px] min-w-[300px] text-[#242424] flex items-center justify-start gap-[10px]  py-2 px-2  "  >
+                <div key={index} className="w-full max-w-[380px] min-w-[250px] text-[#242424] flex items-center justify-start gap-[10px]  py-2 px-2   "  >
                     <div>
                         {highlight.icon}
                     </div>

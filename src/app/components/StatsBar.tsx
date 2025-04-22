@@ -15,10 +15,11 @@ interface StatsBarProps{
     grid: boolean;
     itemsPerPage: number;
     setItemsPerPage: React.Dispatch<React.SetStateAction<number>>;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 
-export default function StatsBar({totalFurniture, displayStart, displayEnd, setGrid, grid, itemsPerPage, setItemsPerPage} : StatsBarProps) {
+export default function StatsBar({totalFurniture, displayStart, displayEnd, setGrid, grid, itemsPerPage, setItemsPerPage, setCurrentPage} : StatsBarProps) {
 
 
   const {optionValue, setOptionValue, setLoading} = useFurniroContext();
@@ -65,7 +66,8 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
     const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
       setLoading(true);
-      setOptionValue(event.target.value)
+      setOptionValue(event.target.value);
+      setCurrentPage(1)
     }
 
 
@@ -73,13 +75,12 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
 
     return (
-     <section className="bg-[#F9F1E7] w-full min-h-[100px] flex flex-col md:flex-row items-center justify-between gap-10 text-[#000000] px-7 py-4 " >
+     <section className="bg-[#F9F1E7] w-full min-h-[100px] flex flex-col md:flex-row items-center justify-between gap-10 text-[#000000] px-4 md:px-7 py-4 " >
 
 
         {/* left part  */}
-        <div className="flex w-fit  whitespace-nowrap pr-[5%] bg-red-800 min-w-[250px] gap-8 items-center justify-start   pl-[4%] " >
+        <div className="flex w-full max-w-[700px]  md:pr-[5%]  min-w-[250px] gap-8 items-center justify-center md:justify-start   md:pl-[4%] flex-wrap md:flex-nowrap " >
 
-          {optionValue}
 
 
 
@@ -92,7 +93,7 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
 
 
-  <p className="text-base font-normal text-[#000000] border-l-[2px] border-[#9F9F9F] pl-[4%]  " >Showing {displayStart ? displayStart : null} – {displayEnd ? displayEnd : null } of {totalFurniture ? totalFurniture : null} results</p>
+  <p className="text-base font-normal text-[#000000] md:border-l-[2px] md:border-[#9F9F9F] md:pl-[4%]  " >Showing {displayStart ? displayStart : "-" } – {displayEnd ? displayEnd : "-" } of {totalFurniture ? totalFurniture : null} results</p>
         </div>
 
 
@@ -111,9 +112,9 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
 
 
-          Sort by
+        <p className="whitespace-nowrap" >  Sort by</p>
 
-           <select name="default" onChange={handleSelect} value={optionValue} className=" bg-[#FFFFFF] h-[55px] min-w-[188px] outline-none border-none mx-5  p-2 pl-[5%] cursor-pointer "  >
+           <select name="default" onChange={handleSelect} value={optionValue} className=" bg-[#FFFFFF] h-[55px] min-w-[70px] md:min-w-[188px] outline-none border-none mx-2 md:mx-5  p-2 pl-[5%] cursor-pointer "  >
             {selectOptions.map((option, index) => (
               <option key={index} value={option.value} > {option.label} </option>
             ))}
