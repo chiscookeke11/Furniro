@@ -93,7 +93,7 @@ export default function StatsBar({totalFurniture, displayStart, displayEnd, setG
 
 
 
-  <p className="text-base font-normal text-[#000000] md:border-l-[2px] md:border-[#9F9F9F] md:pl-[4%]  " >Showing {displayStart ? displayStart : "-" } – {displayEnd ? displayEnd : "-" } of {totalFurniture ? totalFurniture : null} results</p>
+  <p className="text-base font-normal text-[#000000] md:border-l-[2px] md:border-[#9F9F9F] md:pl-[4%]  " >Showing {displayStart ? displayStart : "-" } – {displayEnd ? displayEnd : "-" } of {totalFurniture ? totalFurniture : "-"} results</p>
         </div>
 
 

@@ -91,6 +91,8 @@ export default function OurProducts() {
                   image={card.image_url}
                   price={card.price}
                   newPrice={card.new_price}
+                  id={card.id}
+                  category={card.category}
                 />
               ))
             }
