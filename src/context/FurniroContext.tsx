@@ -1,5 +1,6 @@
 "use client"
 
+import axios from "axios";
 import { Furniture } from "interfaces/FurnitureInterface";
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { supabase } from "utils/supabaseClient";
@@ -13,6 +14,7 @@ interface FurniroContextType {
   optionValue: string;
   setOptionValue: React.Dispatch<React.SetStateAction<string>>;
   setLoading:  React.Dispatch<React.SetStateAction<boolean>>;
+  tokenPrice: number | undefined;
 }
 
 // Provider props
@@ -28,7 +30,8 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
   const [tableData, setTableData] = useState<Furniture[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [optionValue, setOptionValue] = useState("Default")
+  const [optionValue, setOptionValue] = useState("Default");
+  const [tokenPrice, setTokenPrice] = useState<number>();
 
   useEffect(() => {
     const fetchFurnitureData = async () => {
@@ -57,8 +60,40 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
     fetchFurnitureData();
   }, [optionValue]);
 
+
+
+  useEffect(() => {
+    axios.get("https://api.coingecko.com/api/v3/simple/price?ids=starknet&vs_currencies=idr")
+    .then((response) => {
+      const price = response.data?.starknet?.idr;
+      if (price) {
+        setTokenPrice(price);
+      } else {
+        console.error("Token price not found");
+      }
+    })
+    .catch((error) => console.error("Error fetching token price:", error));
+
+  }, [])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
-    <FurniroContext.Provider value={{ tableData, setTableData, loading, setLoading, error, optionValue, setOptionValue }}>
+    <FurniroContext.Provider value={{ tableData, setTableData, loading, setLoading, error, optionValue, setOptionValue, tokenPrice }}>
       {children}
     </FurniroContext.Provider>
   );

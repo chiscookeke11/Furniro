@@ -1,3 +1,4 @@
+import { useFurniroContext } from "context/FurniroContext";
 import { ArrowDownUp, Heart, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +19,9 @@ interface ProductCardProps {
 }
 
 
-export default function ProductCard({ image, furnitureName, description, price, newPrice, id, }: ProductCardProps) {
+export default function ProductCard({ image, furnitureName, description, price, newPrice, id,  }: ProductCardProps) {
+
+  const {tokenPrice} =  useFurniroContext();
 
 
   const percentageDiscount = ((price - newPrice) / price) * 100
@@ -49,7 +52,7 @@ export default function ProductCard({ image, furnitureName, description, price, 
       <div className="bg-[#F4F5F7] w-[160px] md:w-full md:max-w-[285px] md:h-[446px] relative flex flex-col items-stretch justify-between cursor-pointer overflow-hidden group  "  >
 
 
-        <div className=" w-full h-[67.5%] relative flex items-center justify-center "  >
+        <div className=" w-full h-[60.5%] relative flex items-center justify-center "  >
           <Image src={image} alt={`${furnitureName} image `} height={100} width={100} className="w-full h-full object-cover " />
 
 
@@ -71,6 +74,7 @@ export default function ProductCard({ image, furnitureName, description, price, 
         <div className="w-full h-full p-4 flex flex-col items-start justify-center gap-2 "  >
           <h2 className="text-[#3A3A3A] font-semibold text-xl md:text-2xl "  >{furnitureName} </h2>
           <p className=" text-[#898989] text-sm md:text-base font-medium "  >{description} </p>
+          <p className=" text-[#3A3A3A] text-sm md:text-lg font-semibold whitespace-nowrap  "> Strk {(price/(tokenPrice ?? 1)).toLocaleString()}  </p>
           <div className="w-full flex flex-col md:flex-row items-start md:items-center gap-4  " >
             <h2 className=" text-[#3A3A3A] text-sm md:text-lg font-semibold whitespace-nowrap  "  >Rp {newPrice === 0 ? price.toLocaleString() : newPrice.toLocaleString()} </h2>
             <h3 className="md:text-base text-xs font-normal text-[#B0B0B0] line-through  whitespace-nowrap " > {newPrice > 0 && newPrice !== price ? ` Rp  ${price.toLocaleString()}` : null}</h3></div>
@@ -79,7 +83,8 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
 
 
-        <div className="overlay absolute bottom-0 left-0 w-full h-0 bg-[#3A3A3ABF]  flex flex-col items-center justify-center gap-6  z-10 cursor-default overflow-hidden group-hover:h-full transition-all duration-400 ease-in-out ">
+
+        <div className="overlay absolute bottom-0 left-0 w-full h-0 bg-[#3A3A3ABF] px-3  flex flex-col items-center justify-center gap-6  z-10 cursor-default overflow-hidden group-hover:h-full transition-all duration-400 ease-in-out ">
 
           <button
             onClick={(e) => {
