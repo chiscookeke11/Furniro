@@ -27,8 +27,14 @@ const ProductPage = () => {
 
 
 
-<DetailedInfoSection  detailed_description={product.detailed_description}  />
-      <RelatedProducts category={product.category}  />
+<DetailedInfoSection
+ detailed_description={product.detailed_description}
+ image1={product.image_url}
+   />
+
+      <RelatedProducts
+      category={product.category}
+         />
       <Footer/>
     </div>
   );
