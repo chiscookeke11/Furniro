@@ -1,5 +1,6 @@
 "use client";
 
+import DetailedInfoSection from "app/components/DetailedInfoSection";
 import Footer from "app/components/Footer";
 import Navbar from "app/components/Navbar";
 import RelatedProducts from "app/components/RelatedProducts";
@@ -23,6 +24,10 @@ const ProductPage = () => {
       <h1>{product.name}</h1>
       <h1>{product.description}</h1>
       <h1>{product.id}</h1>
+
+
+
+<DetailedInfoSection  detailed_description={product.detailed_description}  />
       <RelatedProducts category={product.category}  />
       <Footer/>
     </div>

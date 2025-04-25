@@ -9,4 +9,5 @@ export interface Furniture {
     price: number;
     new_price: number;
     category: string;
+    detailed_description: string,
   }
