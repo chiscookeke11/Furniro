@@ -11,7 +11,7 @@ interface DetailedDescriptionProps {
 export default function DetailedDescription({detailed_description, image1}: DetailedDescriptionProps ) {
     return (
         <section  className=" w-full h-full flex flex-col items-center justify-start "  >
-            <p className="w-[80%] text-justify text-[#9F9F9F] font-normal  text-base " > {detailed_description} </p>
+            <p className="w-[95%] md:w-[80%] text-justify text-[#9F9F9F] font-normal  text-base " > {detailed_description} </p>
 
 
             <div className="w-full h-full flex flex-row items-center justify-center gap-5  "   >

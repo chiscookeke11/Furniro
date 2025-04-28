@@ -39,9 +39,12 @@ export default function DetailedInfoSection({ detailed_description, image1 }: De
 
     return (
         <section className="w-full h-full min-h-[30vh] py-[80px]  px-[4%]  border-t-[1px] border-b-[1px] border-[#D9D9D9] "  >
+
+            <div className="mx-auto mb-5  w-fit flex items-center justify-center gap-6 md:gap-10 lg:gap-16  text-[#9F9F9F] " >
             {tabs.map((tab, index) => (
-                <button onClick={() => setActiveTab(tab)} key={index} className="cursor-pointer"  >{tab}</button>
+                <button onClick={() => setActiveTab(tab)} key={index} className={`cursor-pointer font-medium text-sm md:text-lg lg:text-2xl  ${activeTab === tab ? "text-[#000000] " : null}`}  >{tab}</button>
             ))}
+            </div>
             {renderTabContent()}
         </section>
     )
