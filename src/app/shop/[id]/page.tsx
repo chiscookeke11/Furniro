@@ -113,7 +113,7 @@ const ProductPage = () => {
 <div className="w-fit flex flex-row items-center justify-start gap-7 ">
 
 
-  <div  className="w-full  w-[123px] border-[1px] border-[#9F9F9F] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-between gap-5 text-[#000000] font-medium text-base " >
+  <div  className="  w-[123px] border-[1px] border-[#9F9F9F] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-between gap-5 text-[#000000] font-medium text-base " >
 
     <button onClick={decreaseAmount }  className="flex items-center justify-center w-[20px] h-[20px] cursor-pointer "  ><Minus/></button>
     <p> {itemAmount} </p>
