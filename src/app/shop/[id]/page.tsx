@@ -5,9 +5,17 @@ import Footer from "app/components/Footer";
 import Navbar from "app/components/Navbar";
 import RelatedProducts from "app/components/RelatedProducts";
 import { useFurniroContext } from "context/FurniroContext";
-import { Minus, Plus } from "lucide-react";
+import { Facebook, Linkedin, Minus, Plus, Twitter} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  FacebookShareCount,
+} from 'react-share';
+
 
 const ProductPage = () => {
   const { tableData } = useFurniroContext();
@@ -18,7 +26,7 @@ const ProductPage = () => {
 
   const [selectedSize, setSelectedSize] = useState("L");
   const [itemAmount, setItemAmount] = useState(1);
-
+  const url = "https://www.npmjs.com/package/react-share";
 
 
 
@@ -34,7 +42,7 @@ const ProductPage = () => {
   }
 
 
-  const sizes =  [ "L", "XL", "XS" ];
+  const sizes = ["L", "XL", "XS"];
 
   const availableColors = [
     {
@@ -53,7 +61,7 @@ const ProductPage = () => {
 
 
   const increaseItemAmount = () => {
-      setItemAmount((prev) => prev + 1)
+    setItemAmount((prev) => prev + 1)
   }
 
 
@@ -66,76 +74,163 @@ const ProductPage = () => {
 
   return (
     < div className="bg-white font-poppins">
-    <Navbar/>
+      <Navbar />
 
 
-    <section className="w-full flex items-start justify-between gap-10   "  >
-      {/* left side  */}
-      <div></div>
+      <section className="w-full flex items-start justify-center gap-20  py-10 px-[5%]  "  >
+        {/* left side  */}
+        <div className="w-full max-w-[553px] h-fit flex items-start gap-10 " >
 
+          <div className="w-fit flex flex-col items-center gap-14 " >
 
+            <div className="w-[76px] h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden  " >
+              <Image
+                src={product.image_url}
+                alt={product.name}
+                fill
+                className="object-cover absolute top-0 left-0"
+              />
+            </div>
+            <div className="w-[76px] h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden  " >
+              <Image
+                src={product.image_url}
+                alt={product.name}
+                fill
+                className="object-cover absolute top-0 left-0"
+              />
+            </div>
+            <div className="w-[76px] h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden  " >
+              <Image
+                src={product.image_url}
+                alt={product.name}
+                fill
+                className="object-cover absolute top-0 left-0"
+              />
+            </div>
+            <div className="w-[76px] h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden  " >
+              <Image
+                src={product.image_url}
+                alt={product.name}
+                fill
+                className="object-cover absolute top-0 left-0"
+              />
+            </div>
 
+          </div>
 
-{/* right side  */}
-<div className=" w-full max-w-[606.1px] flex items-start flex-col gap-6 "  >
+          <div className="   w-[423px]  h-[500px] bg-[#F9F1E7] rounded-[10px] relative overflow-hidden ">
+            <Image
+              src={product.image_url}
+              alt={product.name}
+              fill
+              className="object-cover absolute top-0 left-0"
+            />
 
-  {/* top part  */}
-<div className="w-full flex flex-col items-Start gap-4  " >
-  <h1>Asgaard sofa</h1>
-  <h3>Rs. 250,000.00</h3>
+          </div>
 
-  <div>rating     5 customer review </div>
-
-  <p>Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
-
-</p>
-
-
-<div className="w-fit flex flex-col items-start gap-3  " >
-<p>Size</p>
-  <div className="w-fit flex flex-row items-center justify-start gap-5 ">
-
- {sizes.map((size, index) => (
-  <button onClick={() => chooseSize(size)} className={` w-[30px] h-[30px] rounded-[5px]   font-normal text-[13px] cursor-pointer ${selectedSize === size ? "bg-[#B88E2F] text-white " : "bg-[#F9F1E7] text-[#000000]"} `}   key={index}> {size}  </button>
- ))}
-</div>
-</div>
-
-<div  className="w-fit flex flex-row items-center justify-start gap-5 " >
-
-  {availableColors.map((color, index) => (
-    <button key={index} className="w-[30px] h-[30px] rounded-full cursor-pointer   " style={{backgroundColor: color.name}}  >   </button>
-  ))}
-
-</div>
-
-
-<div className="w-fit flex flex-row items-center justify-start gap-7 ">
-
-
-  <div  className="  w-[123px] border-[1px] border-[#9F9F9F] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-between gap-5 text-[#000000] font-medium text-base " >
-
-    <button onClick={decreaseAmount }  className="flex items-center justify-center w-[20px] h-[20px] cursor-pointer "  ><Minus/></button>
-    <p> {itemAmount} </p>
-    <button  onClick={increaseItemAmount}  className="flex items-center justify-center w-[20px] h-[20px] cursor-pointer " ><Plus/></button>
-
-  </div>
-
-<button className=" cursor-pointer md:w-[215px] border-[1px] border-[#000000] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-center gap-5 text-[#000000] font-medium text-base text-center  " > Add To Cart  </button>
-<button className=" cursor-pointer md:w-[215px] border-[1px] border-[#000000] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-center gap-5 text-[#000000] font-medium text-base text-center  " > <Plus/> Compare  </button>
-
-</div>
-
-</div>
+        </div>
 
 
 
 
+        {/* right side  */}
+        <div className=" w-full max-w-[606.1px] flex items-start flex-col gap-6 "  >
 
-  {/* bottom part  */}
+          {/* top part  */}
+          <div className="w-full flex flex-col items-Start gap-4  " >
+            <h1 className=" text-[#000000] font-normal text-[42px] "  >{product.name} </h1>
+            <h3 className=" text-[#9F9F9F] text-2xl font-medium " >Rs. {product.price} </h3>
 
-</div>
-    </section>
+            <div className=" font-normal text-[#9F9F9F] text-[13px]  " >rating     5 customer review </div>
+
+            <p className=" text-[#000000] font-normal text-[13px] " >Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
+
+            </p>
+
+
+            <div className="w-fit flex flex-col items-start gap-3  " >
+              <p className=" text-[#9F9F9F] text-sm font-normal " >Size</p>
+              <div className="w-fit flex flex-row items-center justify-start gap-5 ">
+
+                {sizes.map((size, index) => (
+                  <button onClick={() => chooseSize(size)} className={` w-[30px] h-[30px] rounded-[5px]   font-normal text-[13px] cursor-pointer ${selectedSize === size ? "bg-[#B88E2F] text-white " : "bg-[#F9F1E7] text-[#000000]"} `} key={index}> {size}  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="w-fit flex flex-row items-center justify-start gap-5 " >
+
+              {availableColors.map((color, index) => (
+                <button key={index} className="w-[30px] h-[30px] rounded-full cursor-pointer   " style={{ backgroundColor: color.name }}  >   </button>
+              ))}
+
+            </div>
+
+
+            <div className="w-fit flex flex-row items-center justify-start gap-7 ">
+
+
+              <div className="  w-[123px] border-[1px] border-[#9F9F9F] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-between gap-5 text-[#000000] font-medium text-base " >
+
+                <button onClick={decreaseAmount} className="flex items-center justify-center w-[20px] h-[20px] cursor-pointer "  ><Minus /></button>
+                <p> {itemAmount} </p>
+                <button onClick={increaseItemAmount} className="flex items-center justify-center w-[20px] h-[20px] cursor-pointer " ><Plus /></button>
+
+              </div>
+
+              <button className=" cursor-pointer md:w-[215px] border-[1px] border-[#000000] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-center gap-5 text-[#000000] font-medium text-base text-center  " > Add To Cart  </button>
+              <button className=" cursor-pointer md:w-[215px] border-[1px] border-[#000000] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-center gap-5 text-[#000000] font-medium text-base text-center  " > <Plus /> Compare  </button>
+
+            </div>
+
+          </div>
+
+
+          <hr className="w-full bg-[#D9D9D9] h-[1px] mt-[50px] mb-[30px] " />
+
+
+
+
+
+          {/* bottom part  */}
+
+          <div>
+          <div className=" space-y-4 text-[#9F9F9F] text-base font-normal ">
+      <div className="flex items-start gap-4">
+        <span className="w-24 font-medium">SKU</span>
+        <span>  <span className="mr-3" >:</span>SS001</span>
+      </div>
+
+      <div className="flex items-start gap-4">
+        <span className="w-24 font-medium">Category</span>
+        <span><span className="mr-3" >:</span> Sofas</span>
+      </div>
+
+      <div className="flex items-start gap-4">
+        <span className="w-24 font-medium">Tags</span>
+        <span><span className="mr-3" >:</span>  Sofa, Chair, Home, Shop</span>
+      </div>
+
+      <div className="flex items-start gap-4">
+        <span className="w-24 font-medium">Share</span>
+        <span className="mr-3" >:</span>
+        <span className="flex items-center gap-4">
+        <FacebookShareButton url={url}>
+        <FacebookIcon size={32} round />
+      </FacebookShareButton>
+
+      <FacebookShareCount url={url}>
+        {(shareCount) => <span>{shareCount}</span>}
+      </FacebookShareCount>
+        <Link href={"#"} >  <Linkedin className="text-black bg-white rounded-sm w-6 h-6 cursor-pointer"  /></Link>
+          <Link href={"#"} >  <Twitter className="text-black bg-white rounded-full p-1 w-6 h-6 cursor-pointer" /></Link>
+        </span>
+      </div>
+    </div>
+          </div>
+
+        </div>
+      </section>
 
 
 
@@ -143,15 +238,15 @@ const ProductPage = () => {
 
 
 
-<DetailedInfoSection
- detailed_description={product.detailed_description}
- image1={product.image_url}
-   />
+      <DetailedInfoSection
+        detailed_description={product.detailed_description}
+        image1={product.image_url}
+      />
 
       <RelatedProducts
-      category={product.category}
-         />
-      <Footer/>
+        category={product.category}
+      />
+      <Footer />
     </div>
   );
 };
