@@ -5,7 +5,7 @@ import Footer from "app/components/Footer";
 import Navbar from "app/components/Navbar";
 import RelatedProducts from "app/components/RelatedProducts";
 import { useFurniroContext } from "context/FurniroContext";
-import { Facebook, Linkedin, Minus, Plus, Twitter} from "lucide-react";
+import { Linkedin, Minus, Plus, Twitter} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
