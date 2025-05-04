@@ -4,6 +4,7 @@ import DetailedInfoSection from "app/components/DetailedInfoSection";
 // import Footer from "app/components/Footer";
 import Navbar from "app/components/Navbar";
 import RelatedProducts from "app/components/RelatedProducts";
+import Loader from "app/components/ui/Loader";
 import { useFurniroContext } from "context/FurniroContext";
 import { Facebook, Linkedin, Minus, Plus, Twitter} from "lucide-react";
 import Image from "next/image";
@@ -48,7 +49,7 @@ const ProductPage = () => {
 
 
   if (!product) {
-    return <p>loading ....</p>;
+    return (<div className=" fixed w-full h-screen top-0 left-0 bg-white/10 backdrop-blur-md flex items-center justify-center " > <Loader/> </div>);
   }
 
 

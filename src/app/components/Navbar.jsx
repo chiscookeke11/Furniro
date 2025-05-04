@@ -100,7 +100,7 @@ const Navbar = () => {
         </ul>
       </ul>
 
-      {showCart && <CartSidebar />}
+      {showCart && <CartSidebar setShowCart={setShowCart} />}
     </header>
   );
 };
