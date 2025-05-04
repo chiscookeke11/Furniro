@@ -3,7 +3,7 @@ import { Heart, Menu, Search, ShoppingCart, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import InvisibleSdkButton from "./InvisibleSdkButton";
+
 
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -28,7 +28,6 @@ const Navbar = () => {
         <Image src="/logo/logo.svg" alt="logo" height={100} width={150} />
       </Link>
 
-      <InvisibleSdkButton/>
 
       <ul className=" hidden lg:flex items-center gap-6 ">
         {navLinks.map((navLink, index) => (
