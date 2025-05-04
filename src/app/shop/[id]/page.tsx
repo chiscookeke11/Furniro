@@ -9,12 +9,7 @@ import { Facebook, Linkedin, Minus, Plus, Twitter} from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  FacebookShareButton,
-  FacebookShareCount,
-  LinkedinShareButton,
-  TwitterShareButton,
-} from 'react-share';
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, } from 'react-share';
 
 
 const ProductPage = () => {
@@ -27,7 +22,7 @@ const ProductPage = () => {
 
   const [selectedSize, setSelectedSize] = useState("L");
   const [itemAmount, setItemAmount] = useState(1);
-  const [displayedPhoto, setDisplayedPhoto] = useState(product?.image_url);
+  // const [displayedPhoto, setDisplayedPhoto] = useState(product?.image_url);
 
 
 
@@ -42,9 +37,9 @@ const ProductPage = () => {
 
 
 
-  const selecteDisplayedPhoto = () => {
-    setDisplayedPhoto(product?.image_url)
-  }
+  // const selecteDisplayedPhoto = () => {
+  //   setDisplayedPhoto(product?.image_url)
+  // }
 
   const chooseSize = (size: string) => {
     setSelectedSize(size)
@@ -100,7 +95,7 @@ const ProductPage = () => {
 
           <div className=" w-full md:w-fit flex-row flex lg:flex-col items-center justify-center md:justify-start  gap-5 lg:gap-10 " >
 
-            <div onClick={selecteDisplayedPhoto} className=" w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
+            <div  className=" w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -108,7 +103,7 @@ const ProductPage = () => {
                 className="object-cover absolute top-0 left-0"
               />
             </div>
-            <div onClick={selecteDisplayedPhoto} className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
+            <div className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -116,7 +111,7 @@ const ProductPage = () => {
                 className="object-cover absolute top-0 left-0"
               />
             </div>
-            <div onClick={selecteDisplayedPhoto} className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
+            <div  className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -124,7 +119,7 @@ const ProductPage = () => {
                 className="object-cover absolute top-0 left-0"
               />
             </div>
-            <div onClick={selecteDisplayedPhoto} className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
+            <div  className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -137,7 +132,7 @@ const ProductPage = () => {
 
           <div className="  w-[330px] h-[370px] lg:w-[423px]  lg:h-[500px] bg-[#F9F1E7] rounded-[10px] relative overflow-hidden mx-auto ">
             <Image
-              src={displayedPhoto ?? null}
+              src={product.image_url}
               alt={product.name}
               fill
               className="object-cover absolute top-0 left-0"
