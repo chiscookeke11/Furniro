@@ -1,19 +1,19 @@
 "use client";
 
 import DetailedInfoSection from "app/components/DetailedInfoSection";
-import Footer from "app/components/Footer";
+// import Footer from "app/components/Footer";
 import Navbar from "app/components/Navbar";
 import RelatedProducts from "app/components/RelatedProducts";
 import { useFurniroContext } from "context/FurniroContext";
-import { Linkedin, Minus, Plus, Twitter} from "lucide-react";
+import { Facebook, Linkedin, Minus, Plus, Twitter} from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FacebookShareButton,
-  FacebookIcon,
   FacebookShareCount,
+  LinkedinShareButton,
+  TwitterShareButton,
 } from 'react-share';
 
 
@@ -21,13 +21,24 @@ const ProductPage = () => {
   const { tableData } = useFurniroContext();
   const params = useParams();
   const id = params?.id?.toString();
+  const [url, setUrl] = useState('');
 
   const product = tableData.find((item) => item.id.toString() === id);
 
   const [selectedSize, setSelectedSize] = useState("L");
   const [itemAmount, setItemAmount] = useState(1);
   const [displayedPhoto, setDisplayedPhoto] = useState(product?.image_url);
-  const url = "https://www.npmjs.com/package/react-share";
+
+
+
+
+
+  useEffect(() => {
+    if (typeof window !== "undefined"){
+      setUrl(window.location.href);
+    }
+
+  }, [])
 
 
 
@@ -221,15 +232,17 @@ const ProductPage = () => {
         <span className="w-24 font-medium">Share</span>
         <span className="mr-3" >:</span>
         <span className="flex items-center gap-4">
-        <FacebookShareButton url={url}>
-        <FacebookIcon size={32} round />
+        <FacebookShareButton url={url} title="Check out this product"  >
+        <Facebook/>
       </FacebookShareButton>
 
-      <FacebookShareCount url={url}>
-        {(shareCount) => <span>{shareCount}</span>}
-      </FacebookShareCount>
-        <Link href={"#"} >  <Linkedin className="text-black bg-white rounded-sm w-6 h-6 cursor-pointer"  /></Link>
-          <Link href={"#"} >  <Twitter className="text-black bg-white rounded-full p-1 w-6 h-6 cursor-pointer" /></Link>
+
+
+      <LinkedinShareButton title="Check out this product"  url={url}>
+         <Linkedin className="text-black bg-white rounded-sm w-6 h-6 cursor-pointer"  /></LinkedinShareButton>
+
+
+         <TwitterShareButton url={url} title="Check out this product" ><Twitter className="text-black bg-white rounded-full p-1 w-6 h-6 cursor-pointer" /></TwitterShareButton>
         </span>
       </div>
     </div>
