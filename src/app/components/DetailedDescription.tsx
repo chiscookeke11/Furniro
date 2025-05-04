@@ -15,10 +15,10 @@ export default function DetailedDescription({ detailed_description, image1 }: De
 
 
             <div className="w-full h-full flex flex-row items-center justify-center gap-5 mt-[30px] "   >
-                <div className=" w-[200px] h-[200px] md:w-[350px] md:h-[350px] lg:w-[608px] lg:h-[305px]  bg-[#FAF3EA] flex items-center justify-center relative  " >
+                <div className=" w-[200px] h-[200px] md:w-[350px] md:h-[350px] lg:w-[608px] lg:h-[305px]  bg-[#FAF3EA] flex items-center justify-center relative rounded-xl overflow-hidden " >
                     <Image src={image1} alt="image" fill className="w-full h-full object-cover absolute top-0 left-0 " />
                 </div>
-                <div className=" w-[200px] h-[200px] md:w-[350px] md:h-[350px] lg:w-[608px] lg:h-[305px]  bg-[#FAF3EA] flex items-center justify-center relative  " >
+                <div className=" w-[200px] h-[200px] md:w-[350px] md:h-[350px] lg:w-[608px] lg:h-[305px]  bg-[#FAF3EA] flex items-center justify-center relative rounded-xl overflow-hidden " >
                     <Image src={image1} alt="image" fill className="w-full h-full object-cover absolute top-0 left-0  " />
                 </div>
             </div>

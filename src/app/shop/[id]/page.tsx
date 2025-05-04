@@ -26,10 +26,14 @@ const ProductPage = () => {
 
   const [selectedSize, setSelectedSize] = useState("L");
   const [itemAmount, setItemAmount] = useState(1);
+  const [displayedPhoto, setDisplayedPhoto] = useState(product?.image_url);
   const url = "https://www.npmjs.com/package/react-share";
 
 
 
+  const selecteDisplayedPhoto = () => {
+    setDisplayedPhoto(product?.image_url)
+  }
 
   const chooseSize = (size: string) => {
     setSelectedSize(size)
@@ -60,6 +64,8 @@ const ProductPage = () => {
   ]
 
 
+
+
   const increaseItemAmount = () => {
     setItemAmount((prev) => prev + 1)
   }
@@ -77,13 +83,13 @@ const ProductPage = () => {
       <Navbar />
 
 
-      <section className="w-full flex items-start justify-center gap-20  py-10 px-[5%]  "  >
+      <section className="w-full flex items-start justify-center gap-10 lg:gap-20  py-10 px-[5%] flex-col md:flex-row "  >
         {/* left side  */}
-        <div className="w-full max-w-[553px] h-fit flex items-start gap-10 " >
+        <div className="w-full max-w-[553px] h-fit flex flex-col-reverse lg:flex-row items-start gap-6 md:gap-10  " >
 
-          <div className="w-fit flex flex-col items-center gap-14 " >
+          <div className=" w-full md:w-fit flex-row flex lg:flex-col items-center justify-center md:justify-start  gap-5 lg:gap-10 " >
 
-            <div className="w-[76px] h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden  " >
+            <div onClick={selecteDisplayedPhoto} className=" w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -91,7 +97,7 @@ const ProductPage = () => {
                 className="object-cover absolute top-0 left-0"
               />
             </div>
-            <div className="w-[76px] h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden  " >
+            <div onClick={selecteDisplayedPhoto} className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -99,7 +105,7 @@ const ProductPage = () => {
                 className="object-cover absolute top-0 left-0"
               />
             </div>
-            <div className="w-[76px] h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden  " >
+            <div onClick={selecteDisplayedPhoto} className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -107,7 +113,7 @@ const ProductPage = () => {
                 className="object-cover absolute top-0 left-0"
               />
             </div>
-            <div className="w-[76px] h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden  " >
+            <div onClick={selecteDisplayedPhoto} className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -118,9 +124,9 @@ const ProductPage = () => {
 
           </div>
 
-          <div className="   w-[423px]  h-[500px] bg-[#F9F1E7] rounded-[10px] relative overflow-hidden ">
+          <div className="  w-[330px] h-[370px] lg:w-[423px]  lg:h-[500px] bg-[#F9F1E7] rounded-[10px] relative overflow-hidden mx-auto ">
             <Image
-              src={product.image_url}
+              src={displayedPhoto ?? null}
               alt={product.name}
               fill
               className="object-cover absolute top-0 left-0"
@@ -134,14 +140,14 @@ const ProductPage = () => {
 
 
         {/* right side  */}
-        <div className=" w-full max-w-[606.1px] flex items-start flex-col gap-6 "  >
+        <div className=" w-full max-w-[350px] lg:max-w-[606.1px] flex items-start flex-col gap-6 "  >
 
           {/* top part  */}
           <div className="w-full flex flex-col items-Start gap-4  " >
             <h1 className=" text-[#000000] font-normal text-[42px] "  >{product.name} </h1>
             <h3 className=" text-[#9F9F9F] text-2xl font-medium " >Rs. {product.price} </h3>
 
-            <div className=" font-normal text-[#9F9F9F] text-[13px]  " >rating     5 customer review </div>
+            <div className=" font-normal text-[#9F9F9F] text-[13px] flex w-fit items-center justify-between gap-5 " >rating  <span className="block h-[25px] w-[1px]  border-[1px] bg-[#9F9F9F] " ></span>    5 customer review </div>
 
             <p className=" text-[#000000] font-normal text-[13px] " >Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
 
@@ -167,10 +173,10 @@ const ProductPage = () => {
             </div>
 
 
-            <div className="w-fit flex flex-row items-center justify-start gap-7 ">
+            <div className="w-fit flex flex-row items-center justify-start gap-5 lg:gap-7 flex-wrap lg:flex-nowrap ">
 
 
-              <div className="  w-[123px] border-[1px] border-[#9F9F9F] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-between gap-5 text-[#000000] font-medium text-base " >
+              <div className="  w-[123px] border-[1px] border-[#9F9F9F] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-between gap-5 text-[#000000] font-medium text-base  " >
 
                 <button onClick={decreaseAmount} className="flex items-center justify-center w-[20px] h-[20px] cursor-pointer "  ><Minus /></button>
                 <p> {itemAmount} </p>
@@ -178,8 +184,8 @@ const ProductPage = () => {
 
               </div>
 
-              <button className=" cursor-pointer md:w-[215px] border-[1px] border-[#000000] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-center gap-5 text-[#000000] font-medium text-base text-center  " > Add To Cart  </button>
-              <button className=" cursor-pointer md:w-[215px] border-[1px] border-[#000000] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-center gap-5 text-[#000000] font-medium text-base text-center  " > <Plus /> Compare  </button>
+              <button className=" cursor-pointer w-[130px] lg:w-[215px] border-[1px] border-[#000000] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-center gap-5 text-[#000000] font-medium text-base text-center  " > Add To Cart  </button>
+              <button className=" cursor-pointer w-[130px] lg:w-[215px] border-[1px] border-[#000000] rounded-[10px] h-[64px] px-2 py-3 flex items-center justify-center gap-5 text-[#000000] font-medium text-base text-center  " > <Plus /> Compare  </button>
 
             </div>
 
@@ -246,7 +252,7 @@ const ProductPage = () => {
       <RelatedProducts
         category={product.category}
       />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
