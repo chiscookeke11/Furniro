@@ -13,7 +13,7 @@ const Navbar = () => {
     { label: "Home", url: "/" },
     { label: "Shop", url: "/shop" },
     { label: "About", url: "home" },
-    { label: "Contact", url: "home" },
+    { label: "Contact", url: "/contact" },
   ];
 
   const iconLinks = [
