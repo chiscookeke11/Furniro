@@ -1,13 +1,15 @@
 "use client";
+import { useFurniroContext } from "context/FurniroContext";
 import { Heart, Menu, Search, ShoppingCart, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import CartSidebar from "./CartSidebar";
+
 
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
-  const [showCart, setShowCart] = useState(false);
+  const {setShowCart} = useFurniroContext()
+
 
   const navLinks = [
     { label: "Home", url: "/" },
@@ -30,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="font-poppins w-full flex items-center justify-between bg-white px-[5%] py-[2%] shadow-lg">
+    <header className="font-poppins w-full flex items-center justify-between bg-white px-[5%] py-[2%] shadow-lg  ">
       <Link href="/">
         <Image src="/logo/logo.svg" alt="logo" height={100} width={150} />
       </Link>
@@ -100,7 +102,9 @@ const Navbar = () => {
         </ul>
       </ul>
 
-      {showCart && <CartSidebar setShowCart={setShowCart} />}
+
+
+
     </header>
   );
 };

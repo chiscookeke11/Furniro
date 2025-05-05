@@ -1,22 +1,28 @@
+"use client"
+
+
+import { useFurniroContext } from "context/FurniroContext";
 import { ProductCardData } from "data/Mockdata";
 
-interface CartSidebarProps {
-    setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 
 
 
-export default function CartSidebar({setShowCart}: CartSidebarProps ) {
+export default function CartSidebar() {
+
+
+    const {showCart, setShowCart} =  useFurniroContext();
+
+
     return (
-        <div onClick={() => setShowCart(false)}  className="fixed inset-0 w-full h-screen bg-[#00000033] z-50 " >
+
                 <div onClick={
                    (event) => {
                     event.stopPropagation();
                     event.preventDefault();
                    }
                 }
-                 className=" w-[417px] h-[746px] bg-[#FFFFFF] absolute top-0 right-0 z-50 overflow-y-auto py-6  "  >
+                 className={`w-[417px] h-[746px] bg-[#FFFFFF] fixed top-0 right-0 z-100 overflow-y-auto py-6 transfrom transition-all duration-200 ${showCart ?  "translate-x-0" : "translate-x-[120%]" }  `}  >
                     <div className=" w-[350px] h-fit bg-red-600 mx-auto " >
 
 
@@ -40,7 +46,7 @@ export default function CartSidebar({setShowCart}: CartSidebarProps ) {
                     </div>
 
         </div>
-        </div>
+
 
     )
 }

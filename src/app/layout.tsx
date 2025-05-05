@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import { FurniroContextProvider } from "context/FurniroContext";
+import CartSidebar from "./components/CartSidebar";
+import Overlay from "./components/Overlay";
 
 
 
@@ -34,10 +36,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased overflow-x-hidden `}
       >
         <FurniroContextProvider>
         {children}
+        <CartSidebar  />
+        <Overlay/>
         </FurniroContextProvider>
       </body>
     </html>

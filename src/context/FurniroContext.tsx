@@ -15,6 +15,8 @@ interface FurniroContextType {
   setOptionValue: React.Dispatch<React.SetStateAction<string>>;
   setLoading:  React.Dispatch<React.SetStateAction<boolean>>;
   tokenPrice: number | undefined;
+      setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+      showCart: boolean;
 }
 
 // Provider props
@@ -32,6 +34,7 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
   const [error, setError] = useState<boolean>(false);
   const [optionValue, setOptionValue] = useState("Default");
   const [tokenPrice, setTokenPrice] = useState<number>();
+  const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
     const fetchFurnitureData = async () => {
@@ -93,7 +96,7 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
 
 
   return (
-    <FurniroContext.Provider value={{ tableData, setTableData, loading, setLoading, error, optionValue, setOptionValue, tokenPrice }}>
+    <FurniroContext.Provider value={{ tableData, setTableData, loading, setLoading, error, optionValue, setOptionValue, tokenPrice, showCart, setShowCart }}>
       {children}
     </FurniroContext.Provider>
   );
