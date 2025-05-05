@@ -13,10 +13,10 @@ interface FurniroContextType {
   error: boolean;
   optionValue: string;
   setOptionValue: React.Dispatch<React.SetStateAction<string>>;
-  setLoading:  React.Dispatch<React.SetStateAction<boolean>>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   tokenPrice: number | undefined;
-      setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
-      showCart: boolean;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+  showCart: boolean;
 }
 
 // Provider props
@@ -67,15 +67,15 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
 
   useEffect(() => {
     axios.get("https://api.coingecko.com/api/v3/simple/price?ids=starknet&vs_currencies=idr")
-    .then((response) => {
-      const price = response.data?.starknet?.idr;
-      if (price) {
-        setTokenPrice(price);
-      } else {
-        console.error("Token price not found");
-      }
-    })
-    .catch((error) => console.error("Error fetching token price:", error));
+      .then((response) => {
+        const price = response.data?.starknet?.idr;
+        if (price) {
+          setTokenPrice(price);
+        } else {
+          console.error("Token price not found");
+        }
+      })
+      .catch((error) => console.error("Error fetching token price:", error));
 
   }, [])
 

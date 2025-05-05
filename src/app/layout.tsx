@@ -4,6 +4,8 @@ import "./globals.css";
 import { FurniroContextProvider } from "context/FurniroContext";
 import CartSidebar from "./components/CartSidebar";
 import Overlay from "./components/Overlay";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 
 
@@ -32,16 +34,19 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>)
+ {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased overflow-x-hidden `}
       >
         <FurniroContextProvider>
-        {children}
-        <CartSidebar  />
-        <Overlay/>
+          <Navbar />
+          {children}
+          <CartSidebar />
+          <Overlay />
+          <Footer />
         </FurniroContextProvider>
       </body>
     </html>

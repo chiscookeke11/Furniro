@@ -5,11 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
-  const {setShowCart} = useFurniroContext()
-
+  const { setShowCart } = useFurniroContext();
 
   const navLinks = [
     { label: "Home", url: "/" },
@@ -101,10 +99,6 @@ const Navbar = () => {
           ))}
         </ul>
       </ul>
-
-
-
-
     </header>
   );
 };

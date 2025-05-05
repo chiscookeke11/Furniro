@@ -29,6 +29,21 @@ body {
   padding: 3rem 0;
 }
 .center  .slick-center{
-  background: red;
   pointer-events: all;
+}
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #B88E2F;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #FAF3EA;
+    border-radius: 9999px;
+  }
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #B88E2F #f1f1f1;
+  }
 }

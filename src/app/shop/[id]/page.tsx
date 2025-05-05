@@ -1,12 +1,10 @@
 "use client";
 
 import DetailedInfoSection from "app/components/DetailedInfoSection";
-// import Footer from "app/components/Footer";
-import Navbar from "app/components/Navbar";
 import RelatedProducts from "app/components/RelatedProducts";
 import Loader from "app/components/ui/Loader";
 import { useFurniroContext } from "context/FurniroContext";
-import { Facebook, Linkedin, Minus, Plus, Twitter} from "lucide-react";
+import { Facebook, Linkedin, Minus, Plus, Twitter } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -30,7 +28,7 @@ const ProductPage = () => {
 
 
   useEffect(() => {
-    if (typeof window !== "undefined"){
+    if (typeof window !== "undefined") {
       setUrl(window.location.href);
     }
 
@@ -49,7 +47,7 @@ const ProductPage = () => {
 
 
   if (!product) {
-    return (<div className=" fixed w-full h-screen top-0 left-0 bg-white/10 backdrop-blur-md flex items-center justify-center " > <Loader/> </div>);
+    return (<div className=" fixed w-full h-screen top-0 left-0 bg-white/10 backdrop-blur-md flex items-center justify-center " > <Loader /> </div>);
   }
 
 
@@ -87,7 +85,7 @@ const ProductPage = () => {
 
   return (
     < div className="bg-white font-poppins">
-      <Navbar />
+
 
 
       <section className="w-full flex items-start justify-center gap-10 lg:gap-20  py-10 px-[5%] flex-col md:flex-row "  >
@@ -96,7 +94,7 @@ const ProductPage = () => {
 
           <div className=" w-full md:w-fit flex-row flex lg:flex-col items-center justify-center md:justify-start  gap-5 lg:gap-10 " >
 
-            <div  className=" w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
+            <div className=" w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -112,7 +110,7 @@ const ProductPage = () => {
                 className="object-cover absolute top-0 left-0"
               />
             </div>
-            <div  className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
+            <div className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -120,7 +118,7 @@ const ProductPage = () => {
                 className="object-cover absolute top-0 left-0"
               />
             </div>
-            <div  className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
+            <div className="w-[60px] h-[60px] md:w-[76px] md:h-[80px] rounded-lg bg-[#F9F1E7] shadow-[0_4px_6px_0_#D9D9D9] relative overflow-hidden cursor-pointer " >
               <Image
                 src={product.image_url}
                 alt={product.name}
@@ -208,40 +206,40 @@ const ProductPage = () => {
           {/* bottom part  */}
 
           <div>
-          <div className=" space-y-4 text-[#9F9F9F] text-base font-normal ">
-      <div className="flex items-start gap-4">
-        <span className="w-24 font-medium">SKU</span>
-        <span>  <span className="mr-3" >:</span>SS001</span>
-      </div>
+            <div className=" space-y-4 text-[#9F9F9F] text-base font-normal ">
+              <div className="flex items-start gap-4">
+                <span className="w-24 font-medium">SKU</span>
+                <span>  <span className="mr-3" >:</span>SS001</span>
+              </div>
 
-      <div className="flex items-start gap-4">
-        <span className="w-24 font-medium">Category</span>
-        <span><span className="mr-3" >:</span> Sofas</span>
-      </div>
+              <div className="flex items-start gap-4">
+                <span className="w-24 font-medium">Category</span>
+                <span><span className="mr-3" >:</span> Sofas</span>
+              </div>
 
-      <div className="flex items-start gap-4">
-        <span className="w-24 font-medium">Tags</span>
-        <span><span className="mr-3" >:</span>  Sofa, Chair, Home, Shop</span>
-      </div>
+              <div className="flex items-start gap-4">
+                <span className="w-24 font-medium">Tags</span>
+                <span><span className="mr-3" >:</span>  Sofa, Chair, Home, Shop</span>
+              </div>
 
-      <div className="flex items-start gap-4">
-        <span className="w-24 font-medium">Share</span>
-        <span className="mr-3" >:</span>
-        <span className="flex items-center gap-4">
-        <FacebookShareButton url={url} title="Check out this product"  >
-        <Facebook/>
-      </FacebookShareButton>
-
-
-
-      <LinkedinShareButton title="Check out this product"  url={url}>
-         <Linkedin className="text-black bg-white rounded-sm w-6 h-6 cursor-pointer"  /></LinkedinShareButton>
+              <div className="flex items-start gap-4">
+                <span className="w-24 font-medium">Share</span>
+                <span className="mr-3" >:</span>
+                <span className="flex items-center gap-4">
+                  <FacebookShareButton url={url} title="Check out this product"  >
+                    <Facebook />
+                  </FacebookShareButton>
 
 
-         <TwitterShareButton url={url} title="Check out this product" ><Twitter className="text-black bg-white rounded-full p-1 w-6 h-6 cursor-pointer" /></TwitterShareButton>
-        </span>
-      </div>
-    </div>
+
+                  <LinkedinShareButton title="Check out this product" url={url}>
+                    <Linkedin className="text-black bg-white rounded-sm w-6 h-6 cursor-pointer" /></LinkedinShareButton>
+
+
+                  <TwitterShareButton url={url} title="Check out this product" ><Twitter className="text-black bg-white rounded-full p-1 w-6 h-6 cursor-pointer" /></TwitterShareButton>
+                </span>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -261,7 +259,6 @@ const ProductPage = () => {
       <RelatedProducts
         category={product.category}
       />
-      {/* <Footer /> */}
     </div>
   );
 };

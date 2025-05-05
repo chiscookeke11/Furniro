@@ -94,7 +94,7 @@ export default function InspirationSlider({ Images } : InspirationSliderProps) {
 
                 <div className="h-full md:flex w-full  flex-col gap-5 max-w-[400px] hidden " >
 
-                    <div className="nextSlide h-[450px] relative w-[350px] bg-orange-300  ">
+                    <div className="nextSlide h-[450px] relative w-[350px]  ">
 
                         {Images[nextView]?.image_url? <Image
                             src={Images[nextView]?.image_url || Images[0]?.image_url}

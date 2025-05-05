@@ -1,8 +1,7 @@
 "use client"
 
 
-import Footer from "app/components/Footer";
-import Navbar from "app/components/Navbar";
+
 import ReusableHero from "app/components/ReusableHero";
 import ServiceHighlights from "app/components/ServiceHighlights";
 import StatsBar from "app/components/StatsBar";
@@ -55,7 +54,6 @@ export default function Page() {
 
     return (
         <div className="bg-white font-poppins" >
-            <Navbar />
             <ReusableHero pageName={"Shop"} />
             <StatsBar
                 totalFurniture={tableData.length}
@@ -115,7 +113,6 @@ export default function Page() {
                 {error ? null : loading ? null : <button onClick={handleNext} disabled={currentPage === totalPages} className={`self-center  h-[30px] px-5 py-4 flex items-center justify-center md:h-[60px] md:w-[98px] bg-[#F9F1E7] rounded-[10px] text-base md:text-lg font-normal  text-[#000000] hover:bg-[#B88E2F] transition-all ease-in-out duration-150 hover:text-white  ${currentPage === totalPages ? "bg-[#c0c0c0] cursor-not-allowed pointer-events-none " : "cursor-pointer"} `} >Next</button>}
             </div>
             <ServiceHighlights />
-            <Footer />
         </div>
     )
 }
