@@ -30,7 +30,7 @@ export default function CartSidebar() {
                     event.preventDefault();
                    }
                 }
-                 className={`font-poppins  w-[417px] h-[746px] bg-[#FFFFFF] fixed top-0 right-0 z-100 overflow-y-auto custom-scrollbar py-6 transfrom transition-all duration-200 ${showCart ?  "translate-x-0" : "translate-x-[120%]" }  `}  >
+                 className={`font-poppins  w-[417px] h-h-screen md:h-[746px] bg-[#FFFFFF] fixed top-0 right-0 z-100 overflow-y-auto custom-scrollbar py-6 transfrom transition-all duration-200 ${showCart ?  "translate-x-0" : "translate-x-[120%]" }  `}  >
 
 
                     <div className=" w-[350px] flex justify-between mx-auto items-start mb-[40px]  " >
