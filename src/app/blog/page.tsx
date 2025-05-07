@@ -1,6 +1,7 @@
 "use client"
 
 
+import BlogCard from "app/components/BlogCard";
 import ReusableHero from "app/components/ReusableHero";
 import ServiceHighlights from "app/components/ServiceHighlights";
 import { Blog } from "interfaces/BlogInterface";
@@ -40,6 +41,20 @@ export default function Page() {
     return (
         <div>
 <ReusableHero pageName="Blog" />
+
+
+
+
+
+
+<section className=" flex flex-col items-start gap-10 " >
+{
+    blogData?.map((blog, index) => (
+<BlogCard key={index} blogData={blog}  />
+    ))
+}
+</section>
+
 
 
 
