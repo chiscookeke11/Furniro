@@ -149,8 +149,8 @@ const ProductPage = () => {
 
           {/* top part  */}
           <div className="w-full flex flex-col items-Start gap-4  " >
-            <h1 className=" text-[#000000] font-normal text-[42px] "  >{product.name} </h1>
-            <h3 className=" text-[#9F9F9F] text-2xl font-medium " >Rs. {product.price} </h3>
+            <h1 className=" text-[#000000] font-normal text-2xl md:text-[42px] "  >{product.name} </h1>
+            <h3 className=" text-[#9F9F9F] text-lg md:text-2xl font-medium " >Rs. {product.price} </h3>
 
             <div className=" font-normal text-[#9F9F9F] text-[13px] flex w-fit items-center justify-between gap-5 " >rating  <span className="block h-[25px] w-[1px]  border-[1px] bg-[#9F9F9F] " ></span>    5 customer review </div>
 

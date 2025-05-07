@@ -6,6 +6,7 @@ import CartSidebar from "./components/CartSidebar";
 import Overlay from "./components/Overlay";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Toaster } from "sonner";
 
 
 
@@ -46,6 +47,7 @@ export default function RootLayout({
           {children}
           <CartSidebar />
           <Overlay />
+          <Toaster/>
           <Footer />
         </FurniroContextProvider>
       </body>

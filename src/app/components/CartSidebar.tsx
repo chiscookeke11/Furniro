@@ -30,7 +30,7 @@ export default function CartSidebar() {
                     event.preventDefault();
                    }
                 }
-                 className={`font-poppins  w-[417px] h-h-screen md:h-[746px] bg-[#FFFFFF] fixed top-0 right-0 z-100 overflow-y-auto custom-scrollbar py-6 transfrom transition-all duration-200 ${showCart ?  "translate-x-0" : "translate-x-[120%]" }  `}  >
+                 className={`font-poppins  w-[417px] h-screen md:h-[746px] bg-[#FFFFFF] fixed top-0 right-0 z-100 overflow-y-auto custom-scrollbar py-6 transfrom transition-all duration-200 ${showCart ?  "translate-x-0" : "translate-x-[120%]" }  `}  >
 
 
                     <div className=" w-[350px] flex justify-between mx-auto items-start mb-[40px]  " >
@@ -56,7 +56,7 @@ export default function CartSidebar() {
 <ul className="flex flex-col items-stretch gap-5  " >
     {ProductCardData.map((product, index) => (
         <li  key={index} className=" w-full  flex items-center justify-between gap-7 pr-[10px] cursor-pointer bg-transparent p-1 rounded-sm hover:bg-[#F9F1E7] transition duration-150 ease-in-out " >
-            <div className=" w-[105px] h-[105px] rounded-[10px] relative bg-[#D9D9D9]  " >
+            <div className=" w-[50px] h-[50px] md:w-[105px] md:h-[105px] rounded-[10px] relative bg-[#D9D9D9]  " >
                 <Image src={product.image} alt={product.furnitureName} width={100} height={100} className="w-full h-full object-cover rounded-[10px] absolute " />
             </div>
 

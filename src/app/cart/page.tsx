@@ -1,24 +1,51 @@
-import CartTotals from "app/components/CartTotals";
-import OrderTable from "app/components/OrderTable";
-import ReusableHero from "app/components/ReusableHero";
-import ServiceHighlights from "app/components/ServiceHighlights";
+"use client"
 
-
+import CartTotals from "app/components/CartTotals"
+import OrderTable from "app/components/OrderTable"
+import ReusableHero from "app/components/ReusableHero"
+import ServiceHighlights from "app/components/ServiceHighlights"
+import Loader from "app/components/ui/Loader"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { supabase } from "utils/supabaseClient"
 
 export default function Page() {
-    return (
-        <div>
+  const [loading, setLoading] = useState(true) // ✅ Show loader while checking
+  const router = useRouter()
 
-            <ReusableHero pageName="Cart" />
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { session }
+      } = await supabase.auth.getSession()
 
-            <section className=" w-full flex items-start justify-between gap-10 py-[80px] md:px-[6%] px-[10px] flex-col md:flex-row  "  >
+      if (!session) {
+        router.push("/auth/SignIn")
+      } else {
+        setLoading(false) // ✅ Only stop loading if authenticated
+      }
+    }
 
-                <OrderTable/>
-                <CartTotals/>
-            </section>
+    checkUser()
+  }, [router])
+
+  if (loading) {
+    return <Loader />
+  }
 
 
-        <ServiceHighlights/>
-        </div>
-    )
+
+
+  return (
+    <div>
+      <ReusableHero pageName="Cart" />
+
+      <section className="w-full flex items-start justify-between gap-10 py-[80px] md:px-[6%] px-[10px] flex-col md:flex-row">
+        <OrderTable />
+        <CartTotals />
+      </section>
+
+      <ServiceHighlights />
+    </div>
+  )
 }
