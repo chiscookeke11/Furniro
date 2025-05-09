@@ -121,7 +121,7 @@ export default function ContactForm() {
           inputId="fullName"
           label="Your name"
           value={messageFormValues.fullName}
-          errorMessage="Error"
+          errorMessage=""
           required={true}
         />
       </div>
@@ -135,7 +135,7 @@ export default function ContactForm() {
           inputId="email"
           label="Email address"
           value={messageFormValues.email}
-          errorMessage="Error"
+          errorMessage=""
           required={true}
         />
       </div>
@@ -149,7 +149,7 @@ export default function ContactForm() {
           inputId="subject"
           label="Subject"
           value={messageFormValues.subject}
-          errorMessage="Error"
+          errorMessage=""
           required={false}
         />
       </div>
@@ -159,7 +159,7 @@ export default function ContactForm() {
           htmlFor="message"
           className="block mb-2 text-sm font-medium text-gray-700"
         >
-          Message
+          <p className="text-base font-medium text-[#000000] ">           Message  </p>
         </label>
         <textarea
           onChange={handleChange}
@@ -168,7 +168,7 @@ export default function ContactForm() {
           placeholder="Hi! I’d like to ask about..."
           value={messageFormValues.message}
           required
-          className="w-full h-32 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm resize-none"
+          className="w-full h-32  border-[1px] border-[#9F9F9F] focus-none rounded-[10px] px-3 py-2 font-normal text-sm md:text-base  resize-none text-[#000000]"
         />
       </div>
 
