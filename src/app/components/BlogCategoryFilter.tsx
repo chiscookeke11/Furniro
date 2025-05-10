@@ -63,6 +63,7 @@ export default function BlogCategoryFilter() {
             value={searchValues.search}
             errorMessage=""
             required={true}
+            className=""
             />
 
 

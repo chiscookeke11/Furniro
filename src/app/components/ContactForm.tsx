@@ -123,6 +123,7 @@ export default function ContactForm() {
           value={messageFormValues.fullName}
           errorMessage=""
           required={true}
+          className=""
         />
       </div>
 
@@ -137,6 +138,7 @@ export default function ContactForm() {
           value={messageFormValues.email}
           errorMessage=""
           required={true}
+          className=""
         />
       </div>
 
@@ -151,6 +153,7 @@ export default function ContactForm() {
           value={messageFormValues.subject}
           errorMessage=""
           required={false}
+          className=""
         />
       </div>
 

@@ -3,10 +3,10 @@
 import { useState, FormEvent } from "react";
 import Input from "./ui/Input";
 import { supabase } from "utils/supabaseClient";
-import { toast as sonnerToast } from "sonner";
+import { toast as sonnerToast, toast } from "sonner";
 
 type ToastProps = {
-  id: string;
+  id: string | number;
   title: string;
   description: string;
   button: {
@@ -17,6 +17,7 @@ type ToastProps = {
 
 export default function BlogUploadForm() {
   const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [blogUploadValues, setBlogUploadValues] = useState({
     title: "",
     content: "",
@@ -36,25 +37,43 @@ export default function BlogUploadForm() {
     e.preventDefault();
     setIsUploading(true);
 
+    let imageUrl = "";
+
+    if (imageFile) {
+      const fileExt = imageFile.name.split(".").pop();
+      const fileName = `${Date.now()}.${fileExt}`;
+
+      const {  error: uploadError } = await supabase.storage
+        .from("furniro")
+        .upload(fileName, imageFile);
+
+      if (uploadError) {
+        console.error("Image upload error", uploadError);
+        toast.error("Image upload failed!");
+        setIsUploading(false);
+        return;
+      }
+
+      // get the public URL for the uploaded file
+      const { data } = supabase.storage
+        .from("furniro")
+        .getPublicUrl(fileName);
+      imageUrl = data.publicUrl;
+    }
+
     const { error } = await supabase.from("blogs").insert({
       title: blogUploadValues.title,
       blog_content: blogUploadValues.content,
       category: blogUploadValues.category,
       blogger: blogUploadValues.blogger,
+      image: imageUrl,
     });
 
     setIsUploading(false);
 
     if (error) {
       console.error("Error uploading blog:", error);
-      showToast({
-        title: "Upload Failed",
-        description: "Something went wrong. Please try again.",
-        button: {
-          label: "Close",
-          onClick: () => {},
-        },
-      });
+      toast.error("Error uploading blog");
     } else {
       setBlogUploadValues({
         title: "",
@@ -62,6 +81,7 @@ export default function BlogUploadForm() {
         blogger: "admin",
         category: "",
       });
+      setImageFile(null);
 
       showToast({
         title: "Upload Successful",
@@ -87,7 +107,6 @@ export default function BlogUploadForm() {
 
   function Toast(props: ToastProps) {
     const { title, description, button, id } = props;
-
     return (
       <div className="flex flex-col md:flex-row gap-4 rounded-lg bg-white shadow-md ring-1 ring-gray-200 w-full max-w-sm p-4">
         <div className="flex flex-col flex-1">
@@ -99,7 +118,7 @@ export default function BlogUploadForm() {
             button.onClick();
             sonnerToast.dismiss(id);
           }}
-          className="self-start md:self-center mt-2 md:mt-0 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-3 py-1.5 rounded"
+          className="self-start md:self-center mt-2 md:mt-0 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-3 py-1.5 rounded cursor-pointer"
         >
           {button.label}
         </button>
@@ -121,22 +140,47 @@ export default function BlogUploadForm() {
         type="text"
         value={blogUploadValues.title}
         onChange={handleChange}
+        required
+        className=""
       />
 
       <Input
         name="content"
-        id="content"
+        inputId="content"
         placeholder="Upload blog content"
         value={blogUploadValues.content}
         label="Blog content"
         onChange={handleChange}
+        required
+        errorMessage=""
+        type="text"
+        className=""
+      />
+
+      {/* image upload input */}
+      <label
+        htmlFor="imageFile"
+        className="text-sm font-medium text-[#000000] mb-2 block"
+      >
+        Blog Image
+      </label>
+      <input
+        type="file"
+        id="imageFile"
+        accept="image/*"
+        onChange={(e) => {
+          if (e.target.files && e.target.files[0]) {
+            setImageFile(e.target.files[0]);
+          }
+        }}
+        className="block w-full text-sm text-gray-700 border border-gray-300 rounded p-2 cursor-pointer"
+        required
       />
 
       <div className="w-full">
         <h2 className="text-base font-medium text-[#000000] mb-2">
           Select category
         </h2>
-
         <div className="w-full flex items-center gap-5">
           {["wood", "crafts", "design", "handmade", "interior"].map((cat) => (
             <label
@@ -160,7 +204,8 @@ export default function BlogUploadForm() {
 
       <button
         type="submit"
-        className="bg-[#B88E2F] rounded-[5px] w-[237px] h-[55px] cursor-pointer text-white text-base font-normal"
+        className="bg-[#B88E2F] rounded-[5px] w-[237px] h-[55px] cursor-pointer text-white text-base font-normal disabled:bg-gray-400"
+        disabled={isUploading}
       >
         {isUploading ? "Uploading..." : "Submit"}
       </button>
