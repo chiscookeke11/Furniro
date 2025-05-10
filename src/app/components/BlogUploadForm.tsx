@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 import Input from "./ui/Input";
 import { supabase } from "utils/supabaseClient";
 import { toast as sonnerToast, toast } from "sonner";
+import Loader from "./ui/Loader";
 
 type ToastProps = {
   id: string | number;
@@ -207,7 +208,7 @@ export default function BlogUploadForm() {
         className="bg-[#B88E2F] rounded-[5px] w-[237px] h-[55px] cursor-pointer text-white text-base font-normal disabled:bg-gray-400"
         disabled={isUploading}
       >
-        {isUploading ? "Uploading..." : "Submit"}
+        {isUploading ? <Loader/> : "Upload"}
       </button>
     </form>
   );

@@ -6,7 +6,7 @@
 interface InputProps {
     type: string,
     placeholder: string,
-    value: string,
+    value: string | number,
     label: string,
     inputId: string,
     name: string,

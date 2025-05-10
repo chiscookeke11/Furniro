@@ -2,6 +2,8 @@ import { useFurniroContext } from "context/FurniroContext";
 import { ArrowDownUp, Heart, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
+import { supabase } from "utils/supabaseClient";
 
 
 
@@ -43,6 +45,40 @@ export default function ProductCard({ image, furnitureName, description, price, 
       alert('Sharing not supported in this browser.');
     }
   };
+
+
+const addToCart = async () => {
+  const { data: existingItem, error: fetchError } = await supabase
+    .from("cart")
+    .select("*")
+ .eq("product_id", id)
+    .single();
+
+  if (fetchError && fetchError.code !== "PGRST116") {
+    console.log("Error checking cart:", fetchError);
+    return;
+  }
+
+  if (existingItem) {
+    toast("Item already exists in cart")
+  } else {
+    const { error: insertError } = await supabase
+      .from("cart")
+      .insert({
+        product_id: id,
+        product_name: furnitureName,
+        product_price: price,
+        product_image: image,
+        product_amount: 1,
+      });
+
+    if (insertError) {
+      console.log("Error adding to cart:", insertError);
+    } else {
+      toast("Successfully added to cart");
+    }
+  }
+};
 
 
 
@@ -88,8 +124,9 @@ export default function ProductCard({ image, furnitureName, description, price, 
 
           <button
             onClick={(e) => {
-              e.stopPropagation()
+              e.stopPropagation();
               e.preventDefault();
+              addToCart();
             }}
             className=" bg-[#ffffff] w-full max-w-[140px]  md:max-w-[202px] text-xs md:text-base font-semibold text-[#B88E2F] h-full max-h-[48px] cursor-pointer transform hover:scale-90 transition-all ease-in-out duration-150 "  >Add to cart</button>
           <div className="w-full flex flex-col md:flex-row items-center justify-center gap-5 " >
