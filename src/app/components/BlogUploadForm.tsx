@@ -44,7 +44,7 @@ export default function BlogUploadForm() {
       const fileExt = imageFile.name.split(".").pop();
       const fileName = `${Date.now()}.${fileExt}`;
 
-      const {  error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from("furniro")
         .upload(fileName, imageFile);
 
@@ -89,7 +89,7 @@ export default function BlogUploadForm() {
         description: "Your blog has been uploaded!",
         button: {
           label: "Great",
-          onClick: () => {},
+          onClick: () => { },
         },
       });
     }
@@ -182,12 +182,12 @@ export default function BlogUploadForm() {
         <h2 className="text-base font-medium text-[#000000] mb-2">
           Select category
         </h2>
-        <div className="w-full flex items-center gap-5">
+        <div className="w-full flex flex-wrap items-center gap-5">
           {["wood", "crafts", "design", "handmade", "interior"].map((cat) => (
             <label
               key={cat}
               htmlFor={cat}
-              className="text-sm font-medium text-[#000000] gap-1 flex items-center"
+              className="text-sm font-medium text-[#000000] gap-1 flex items-center   "
             >
               <input
                 type="radio"
@@ -208,7 +208,7 @@ export default function BlogUploadForm() {
         className="bg-[#B88E2F] rounded-[5px] w-[237px] h-[55px] cursor-pointer text-white text-base font-normal disabled:bg-gray-400"
         disabled={isUploading}
       >
-        {isUploading ? <Loader/> : "Upload"}
+        {isUploading ? <Loader /> : "Upload"}
       </button>
     </form>
   );
