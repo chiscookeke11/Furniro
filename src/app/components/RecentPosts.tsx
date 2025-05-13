@@ -1,19 +1,25 @@
-import { useFurniroContext } from "context/FurniroContext"
+
+
+
+
 import Image from "next/image"
 import Loader from "./ui/Loader"
+import { Blog } from "interfaces/BlogInterface"
+
+interface RecentPostsProps {
+blogData: Blog[];
+}
 
 
 
 
 
 
+export default function RecentPosts({blogData}: RecentPostsProps) {
 
 
-export default function RecentPosts() {
 
-
-    const { tableData } = useFurniroContext()
-
+const recentPosts =  [...blogData].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
 
 
@@ -22,13 +28,13 @@ export default function RecentPosts() {
             <h2 className=" text-[#000000] font-medium text-2xl "  >Recent Posts</h2>
 
 
-            {tableData && tableData.length > 0 ? (
-                tableData.slice(0, 5).map((recentPost, index) => (
+            {recentPosts && recentPosts.length > 0 ? (
+                recentPosts.slice(0, 5).map((recentPost, index) => (
                     <div key={index} className="flex items-center gap-2 cursor-pointer hover:bg-[#FAF3EA] transition-all duration-150 ease-in-out w-full p-1 rounded-[4px]">
-                        <Image src={recentPost.image_url} alt={recentPost.name || "Post image"} height={80} width={80} className="rounded-[10px] object-cover" />
+                        <Image src={recentPost.image} alt={recentPost.title || "Post image"} height={80} width={80} className="rounded-[10px] object-cover" />
                         <div className="text-[#000000] font-normal">
-                            <h3 className="text-sm">{recentPost.name}</h3>
-                            <small className="text-xs text-[#9F9F9F]">03 Aug 2022</small>
+                            <h3 className="text-sm">{recentPost.title}</h3>
+                            <small className="text-xs text-[#9F9F9F]"> {new Date(recentPost.created_at).toLocaleDateString("en-us") }  </small>
                         </div>
                     </div>
                 ))
