@@ -7,6 +7,7 @@ import Overlay from "./components/Overlay";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Toaster } from "sonner";
+import AdminButton from "./components/AdminButtob";
 
 
 
@@ -49,6 +50,7 @@ export default function RootLayout({
           <Overlay />
           <Toaster/>
           <Footer />
+          <AdminButton/>
         </FurniroContextProvider>
       </body>
     </html>

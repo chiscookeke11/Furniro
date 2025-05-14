@@ -9,7 +9,7 @@ import { useState } from "react"
 
 
 export default function Page() {
-  const [loading, setLoading] = useState(true) // ✅ Show loader while checking
+  const [loading] = useState(true) // ✅ Show loader while checking
 
 
 

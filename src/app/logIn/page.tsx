@@ -1,8 +1,9 @@
 "use client"
 
 
+import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { supabase } from "utils/supabaseClient";
 
 
@@ -10,7 +11,7 @@ import { supabase } from "utils/supabaseClient";
 
 export default function Page() {
 
-const [user, setUser] = useState(null)
+const [user, setUser] = useState<User | null>(null)
 const router = useRouter();
 
         const [signInFormValues, setSignInFormValues] = useState(
@@ -23,7 +24,7 @@ const router = useRouter();
 
 
 
-            const handleChange = (e) => {
+            const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                 const {name, value} = e.target;
 
         setSignInFormValues((prev) => ({
@@ -33,7 +34,7 @@ const router = useRouter();
             }
 
 
-            const handleLogin = async (e) => {
+            const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault()
                 const {data, error} = await supabase.auth.signInWithPassword({
                     email: signInFormValues.email,

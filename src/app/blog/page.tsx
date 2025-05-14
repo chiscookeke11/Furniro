@@ -65,7 +65,7 @@ export default function Page() {
 
         <div className="flex flex-col gap-20 space-y-3 w-full max-w-[280px] lg:max-w-[380px]">
           <BlogCategoryFilter blogData={allBlogs} setFilterBy={setFilterBy} />
-          <RecentPosts blogData={allBlogs} />
+          <RecentPosts blogData={filteredBlogs} />
         </div>
       </div>
 

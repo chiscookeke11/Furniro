@@ -85,7 +85,7 @@ const addToCart = async () => {
 
   return (
     <Link href={`/shop/${id}`} passHref >
-      <div className="bg-[#F4F5F7] w-[160px] md:w-full md:max-w-[285px] md:h-[446px] relative flex flex-col items-stretch justify-between cursor-pointer overflow-hidden group  "  >
+      <div className="bg-[#F4F5F7] w-[160px]  md:w-[240px] lg:w-[285px] md:h-[446px] relative flex flex-col items-stretch justify-between cursor-pointer overflow-hidden group  "  >
 
 
         <div className=" w-full h-[60.5%] relative flex items-center justify-center "  >

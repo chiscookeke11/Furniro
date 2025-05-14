@@ -31,7 +31,7 @@ const recentPosts =  [...blogData].sort((a, b) => new Date(b.created_at).getTime
             {recentPosts && recentPosts.length > 0 ? (
                 recentPosts.slice(0, 5).map((recentPost, index) => (
                     <div key={index} className="flex items-center gap-2 cursor-pointer hover:bg-[#FAF3EA] transition-all duration-150 ease-in-out w-full p-1 rounded-[4px]">
-                        <Image src={recentPost.image} alt={recentPost.title || "Post image"} height={80} width={80} className="rounded-[10px] object-cover" />
+                        <Image src={recentPost.image} alt={recentPost.title || "Post image"} height={80} width={80} className="rounded-[10px] object-cover h-20 w-20 " />
                         <div className="text-[#000000] font-normal">
                             <h3 className="text-sm">{recentPost.title}</h3>
                             <small className="text-xs text-[#9F9F9F]"> {new Date(recentPost.created_at).toLocaleDateString("en-us") }  </small>
