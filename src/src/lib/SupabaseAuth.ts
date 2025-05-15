@@ -1,3 +1,5 @@
+// utils/auth/SupabaseAuth.ts
+
 import { supabase } from "utils/supabaseClient";
 
 const signUp = async (name: string, email: string, password: string) => {
@@ -13,48 +15,54 @@ const signUp = async (name: string, email: string, password: string) => {
     });
 
     if (error) {
-      console.log("Error Signing up", error);
+      console.log("Error Signing up:", error);
       return { error };
     }
 
-    // If sign up is successful and we have a user, create a profile record
     if (data.user) {
-      try {
-        // Create a profile record in the profiles table
-        const { error: profileError } = await supabase.from("profiles").insert([
-          {
-            id: data.user.id,
-            name: name,
-            role: "user", // Default role
-          },
-        ]);
+      // Insert a profile row for the new user
+      const { error: profileError } = await supabase.from("profiles").insert([
+        {
+          id: data.user.id,
+          name,
+          role: "user", // Default role
+          email,
+        },
+      ]);
 
-        if (profileError) {
-          console.error("Error creating profile:", profileError);
-          // We don't return an error here as the auth signup was successful
-        }
-      } catch (profileErr) {
-        console.error("Unexpected error creating profile:", profileErr);
+      if (profileError) {
+        console.error("Error creating profile:", profileError);
+        // Continue anyway — user has signed up
+      }
+
+      // Optional: Automatically sign in user after signup
+      const { error: signInError, data: signInData } =
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+      if (signInError) {
+        console.error("Error auto signing in after signup:", signInError);
+        // Not fatal — user still signed up
+      } else {
+        console.log("Auto Sign In Successful", signInData);
       }
     }
 
-    if (data.session) {
-      console.log("Sign Up Successful");
-    } else {
-      console.log("You need to confirm email");
+    if (!data.session) {
+      console.log("You need to confirm your email before logging in.");
     }
 
     return { error, data };
   } catch (err) {
     console.error("Unexpected error during sign up:", err);
     return {
-      error: { message: "An unexpected error occurred" },
+      error: { message: "An unexpected error occurred during signup" },
       data: null,
     };
   }
 };
-
-
 
 const signIn = async (email: string, password: string) => {
   try {
@@ -64,7 +72,7 @@ const signIn = async (email: string, password: string) => {
     });
 
     if (error) {
-      console.log("Error Signing in", error);
+      console.log("Error Signing in:", error);
       return { error };
     }
 
@@ -73,18 +81,19 @@ const signIn = async (email: string, password: string) => {
   } catch (err) {
     console.error("Unexpected error during sign in:", err);
     return {
-      error: { message: "An unexpected error occurred" },
+      error: { message: "An unexpected error occurred during sign in" },
       data: null,
     };
   }
 };
 
-
-const signOut = async () =>  {
+const signOut = async () => {
   const { error } = await supabase.auth.signOut();
   if (error) {
-    console.log("Error signing out")
+    console.log("Error signing out:", error);
+  } else {
+    console.log("Signed out successfully");
   }
-}
+};
 
 export { signUp, signIn, signOut };
