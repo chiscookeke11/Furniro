@@ -17,7 +17,7 @@ const Navbar = () => {
   ];
 
   const iconLinks = [
-    { icon: <User />, url: "home", type: "user" },
+    { icon: <User />, url: "/auth", type: "user" },
     { icon: <Search />, url: "home", type: "search" },
     { icon: <Heart />, url: "home", type: "heart" },
     { icon: <ShoppingCart />, url: "#", type: "cart" },
