@@ -1,13 +1,15 @@
 "use client";
 import { useFurniroContext } from "context/FurniroContext";
-import { Heart, Menu, Search, ShoppingCart, User, X } from "lucide-react";
+import { Heart, Menu, Search, ShoppingCart, User, X } from 'lucide-react';
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import ProfileDropdown from "./ProfileDropdown";
 
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
-  const { setShowCart } = useFurniroContext();
+  const { setShowCart, userId } = useFurniroContext();
+  const isLoggedIn = !!userId;
 
   const navLinks = [
     { label: "Home", url: "/" },
@@ -16,8 +18,10 @@ const Navbar = () => {
     { label: "Contact", url: "/contact" },
   ];
 
+  // Filter icon links based on authentication state
   const iconLinks = [
-    { icon: <User />, url: "/auth", type: "user" },
+    // Only show User icon if NOT logged in
+    ...(isLoggedIn ? [] : [{ icon: <User />, url: "/auth", type: "user" }]),
     { icon: <Search />, url: "home", type: "search" },
     { icon: <Heart />, url: "home", type: "heart" },
     { icon: <ShoppingCart />, url: "#", type: "cart" },
@@ -30,7 +34,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="font-poppins w-full flex items-center justify-between bg-white px-[5%] py-[2%] shadow-lg  ">
+    <header className="font-poppins w-full flex items-center justify-between bg-white px-[5%] py-[2%] shadow-lg">
       <Link href="/">
         <Image src="/logo/logo.svg" alt="logo" height={100} width={150} />
       </Link>
@@ -51,12 +55,16 @@ const Navbar = () => {
             key={index}
             onClick={() => handleIconClick(iconLink.type)}
             className={`mx-2 text-[#000000] hover:text-[#B88E2F] transition-all duration-300 ease-in-out ${
-              index + 1 === 4 ? "block" : "hidden md:block"
+              iconLink.type === "cart" ? "block" : "hidden md:block"
             }`}
           >
             <Link href={iconLink.url}>{iconLink.icon}</Link>
           </li>
         ))}
+
+        {/* Only show ProfileDropdown if logged in */}
+        {isLoggedIn && <ProfileDropdown />}
+
         <button
           onClick={() => {
             setOpenMobileMenu(true);
@@ -88,6 +96,7 @@ const Navbar = () => {
         ))}
 
         <ul className="flex items-center mt-5">
+          {/* Mobile menu icons - also conditionally rendered */}
           {iconLinks.map((iconLink, index) => (
             <li
               key={index}
@@ -97,6 +106,13 @@ const Navbar = () => {
               <Link href={iconLink.url}>{iconLink.icon}</Link>
             </li>
           ))}
+
+          {/* Show profile info in mobile menu if logged in */}
+          {isLoggedIn && (
+            <li className="mx-1 text-[#FFF3E3]">
+              <ProfileDropdown />
+            </li>
+          )}
         </ul>
       </ul>
     </header>

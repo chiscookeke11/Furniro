@@ -85,10 +85,10 @@ const addToCart = async () => {
 
   return (
     <Link href={`/shop/${id}`} passHref >
-      <div className="bg-[#F4F5F7] w-[160px]  md:w-[240px] lg:w-[285px] md:h-[446px] relative flex flex-col items-stretch justify-between cursor-pointer overflow-hidden group  "  >
+      <div className="bg-[#F4F5F7] w-[160px] h-[430px]  md:w-[240px] lg:w-[285px] md:h-[446px] relative flex flex-col items-stretch justify-between cursor-pointer overflow-hidden group  "  >
 
 
-        <div className=" w-full h-[60.5%] relative flex items-center justify-center "  >
+        <div className=" w-full h-[61%]  "  >
           <Image src={image} alt={`${furnitureName} image `} height={100} width={100} className="w-full h-full object-cover " />
 
 
@@ -107,10 +107,10 @@ const addToCart = async () => {
         </div>
 
 
-        <div className="w-full h-full p-4 flex flex-col items-start justify-center gap-2 "  >
+        <div className="w-full h-[39%]  p-4 flex flex-col items-start justify-center gap-2 "  >
           <h2 className="text-[#3A3A3A] font-semibold text-xl md:text-2xl "  >{furnitureName} </h2>
           <p className=" text-[#898989] text-sm md:text-base font-medium "  >{description} </p>
-          <p className=" text-[#3A3A3A] text-sm md:text-lg font-semibold whitespace-nowrap  "> Strk {(price / (tokenPrice ?? 1)).toLocaleString()}  </p>
+          <p className=" text-[#3A3A3A] text-[10px] md:text-lg font-semibold whitespace-nowrap  "> Strk {(price / (tokenPrice ?? 1)).toLocaleString()}  </p>
           <div className="w-full flex flex-col md:flex-row items-start md:items-center gap-4  " >
             <h2 className=" text-[#3A3A3A] text-sm md:text-lg font-semibold whitespace-nowrap  "  >Rp {newPrice === 0 ? price.toLocaleString() : newPrice.toLocaleString()} </h2>
             <h3 className="md:text-base text-xs font-normal text-[#B0B0B0] line-through  whitespace-nowrap " > {newPrice > 0 && newPrice !== price ? ` Rp  ${price.toLocaleString()}` : null}</h3></div>

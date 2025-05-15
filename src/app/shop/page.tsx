@@ -65,7 +65,7 @@ export default function Page() {
                 setItemsPerPage={setItemsPerPage}
                 setCurrentPage={setCurrentPage}
             />
-            <section className={`w-full h-fit   px-4 py-18 ${grid ? "grid  grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center " : "flex flex-col gap-4 items-center justify-center "} `}>
+            <section className={`w-full h-fit   px-4 py-18 ${grid ? "grid  grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 place-items-center " : "flex flex-col gap-4 items-center justify-center "} `}>
 
 
               {
