@@ -1,5 +1,6 @@
 // utils/auth/SupabaseAuth.ts
 
+import { toast } from "sonner";
 import { supabase } from "utils/supabaseClient";
 
 const signUp = async (name: string, email: string, password: string) => {
@@ -88,11 +89,16 @@ const signIn = async (email: string, password: string) => {
 };
 
 const signOut = async () => {
+  const toastId = toast.loading("Signing out...");
+
   const { error } = await supabase.auth.signOut();
+
   if (error) {
     console.log("Error signing out:", error);
+    toast.error("Sign out failed", { id: toastId }); // update the loading toast to an error
   } else {
     console.log("Signed out successfully");
+    toast.success("Signed out", { id: toastId }); // update the loading toast to a success
   }
 };
 

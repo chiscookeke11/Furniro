@@ -3,13 +3,13 @@ import { useFurniroContext } from "context/FurniroContext";
 import { Heart, Menu, Search, ShoppingCart, User, X } from 'lucide-react';
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileDropdown from "./ProfileDropdown";
 
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const { setShowCart, userId } = useFurniroContext();
-  const isLoggedIn = !!userId;
+  const [isLoggedIn, setIsLoggedIn] = useState(false) ;
 
   const navLinks = [
     { label: "Home", url: "/" },
@@ -32,6 +32,15 @@ const Navbar = () => {
       setShowCart(true);
     }
   };
+
+  useEffect(() => {
+if (!!userId) {
+  setIsLoggedIn(true)
+}
+else {
+  setIsLoggedIn(false)
+}
+  }, [!!userId])
 
   return (
     <header className="font-poppins w-full flex items-center justify-between bg-white px-[5%] py-[2%] shadow-lg">
