@@ -39,7 +39,7 @@ const handleSignUp = async (e: React.FormEvent) => {
       email: "",
       password: "",
     });
-    toast("Signup successful! Check your email for confirmation.");
+    toast("Signup successful! check your email for confirmation.");
   } else {
     toast(`Signup failed: ${error.message}`);
   }
