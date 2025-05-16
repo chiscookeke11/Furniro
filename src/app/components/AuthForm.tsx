@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import Input from "./ui/Input"
 import Loader from "./ui/Loader"
-import { signIn, signUp } from "@/lib/SupabaseAuth"
+import { signIn, signInWithGoogle, signUp } from "@/lib/SupabaseAuth"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 
@@ -96,8 +96,6 @@ export default function AuthForm() {
           // This code should be moved to the signUp function in SupabaseAuth.ts
           // as it requires the supabase client which isn't imported here
           toast.info("Please confirm your email")
-        } else {
-          toast.info("Please confirm your email")
         }
       } else {
         // Sign In functionality
@@ -178,6 +176,9 @@ export default function AuthForm() {
       >
         {isLoading ? <Loader /> : authMode}
       </button>
+
+
+    <button onClick={signInWithGoogle} type="button" >Sign in With google</button>
 
       {authMode === "Sign In" ? (
         <p onClick={toggleAuthMode} className="cursor-pointer text-sm font-medium text-[#000000] mt-5">

@@ -102,4 +102,17 @@ const signOut = async () => {
   }
 };
 
-export { signUp, signIn, signOut };
+
+const signInWithGoogle = async () => {
+  const {error, data} = await supabase.auth.signInWithOAuth({
+     provider: 'google',
+  })
+  if (error) {
+    console.log("error signing in with google")
+  }
+  else {
+    console.log(data)
+  }
+}
+
+export { signUp, signIn, signOut, signInWithGoogle };

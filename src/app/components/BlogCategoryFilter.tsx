@@ -9,15 +9,10 @@ interface BlogCategoryFilterProps {
   setFilterBy: (category: string) => void;
 }
 
-export default function BlogCategoryFilter({
-  blogData,
-  setFilterBy,
-}: BlogCategoryFilterProps) {
+export default function BlogCategoryFilter({blogData, setFilterBy,}: BlogCategoryFilterProps) {
   const [searchValues, setSearchValues] = useState({ search: "" });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setSearchValues((prevValues) => ({
       ...prevValues,
