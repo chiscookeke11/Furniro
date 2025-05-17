@@ -1,6 +1,6 @@
 "use client"
 
-import axios from "axios"
+
 import { Furniture } from "interfaces/FurnitureInterface"
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
 import { supabase } from "utils/supabaseClient"

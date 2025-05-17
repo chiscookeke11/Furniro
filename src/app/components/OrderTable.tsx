@@ -1,11 +1,11 @@
 "use client"
 
-import { CartItemm } from "interfaces/CartItemInterface";
+import { CartItem } from "interfaces/CartItemInterface";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 
 interface OrderTableProps {
-  orderData: CartItemm[];
+  orderData: CartItem[];
   removeItemFromCart: (product_id: string) => void;
 }
 

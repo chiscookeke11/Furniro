@@ -2,7 +2,7 @@
 
 
 import { useFurniroContext } from "context/FurniroContext";
-import { CartItemm } from "interfaces/CartItemInterface";
+import { CartItem } from "interfaces/CartItemInterface";
 import { CircleX, LockKeyhole } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +17,7 @@ export default function CartSidebar() {
 
 
     const {showCart, setShowCart} =  useFurniroContext();
-    const [cartItems, setCartItems] = useState<CartItemm[]>([])
+    const [cartItems, setCartItems] = useState<CartItem[]>([])
 
     useEffect(() => {
 

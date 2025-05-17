@@ -7,12 +7,12 @@ import ServiceHighlights from "app/components/ServiceHighlights"
 import Loader from "app/components/ui/Loader"
 import { useEffect, useState } from "react"
 import { supabase } from "utils/supabaseClient"
-import { CartItemm } from "interfaces/CartItemInterface";
+import { CartItem } from "interfaces/CartItemInterface";
 
 
 export default function Page() {
   const [loading, setLoading] = useState(false)
-  const [orderData, setOrderData] = useState<CartItemm[]>([])
+  const [orderData, setOrderData] = useState<CartItem[]>([])
 
 
   const tableName = "cart"
@@ -43,7 +43,7 @@ export default function Page() {
   }, [])
 
 
-  const removeItemFromCart = async (product_id) => {
+  const removeItemFromCart = async (product_id: string) => {
     const { error } = await supabase.from(tableName).delete().eq("product_id", product_id);
 
     if (error) {
