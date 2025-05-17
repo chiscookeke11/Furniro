@@ -178,7 +178,7 @@ export default function AuthForm() {
       </button>
 
 
-    <button onClick={signInWithGoogle} type="button" >Sign in With google</button>
+
 
       {authMode === "Sign In" ? (
         <p onClick={toggleAuthMode} className="cursor-pointer text-sm font-medium text-[#000000] mt-5">
@@ -189,6 +189,7 @@ export default function AuthForm() {
           Already have an account? <span className="text-[#B88E2F]">Sign In</span>
         </p>
       )}
+  <button className="cursor-pointer"  onClick={signInWithGoogle} type="button" >Sign in With google</button>
     </form>
   )
 }

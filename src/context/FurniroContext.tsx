@@ -14,7 +14,6 @@ interface FurniroContextType {
   optionValue: string
   setOptionValue: React.Dispatch<React.SetStateAction<string>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
-  tokenPrice: number | undefined
   showCart: boolean
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>
   role: string
@@ -35,7 +34,6 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<boolean>(false)
   const [optionValue, setOptionValue] = useState("Default")
-  const [tokenPrice, setTokenPrice] = useState<number>()
   const [showCart, setShowCart] = useState(false)
   const [role, setRole] = useState("")
   const [userId, setUserId] = useState<string | null>(null)
@@ -132,19 +130,7 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
     fetchFurnitureData()
   }, [optionValue])
 
-  useEffect(() => {
-    axios
-      .get("https://api.coingecko.com/api/v3/simple/price?ids=starknet&vs_currencies=idr")
-      .then((response) => {
-        const price = response.data?.starknet?.idr
-        if (price) {
-          setTokenPrice(price)
-        } else {
-          console.error("Token price not found")
-        }
-      })
-      .catch((error) => console.error("Error fetching token price:", error))
-  }, [])
+
 
   return (
     <FurniroContext.Provider
@@ -156,7 +142,6 @@ export const FurniroContextProvider: React.FC<FurniroContextProviderProps> = ({ 
         error,
         optionValue,
         setOptionValue,
-        tokenPrice,
         showCart,
         setShowCart,
         role,

@@ -146,7 +146,7 @@ const subtotal = cartItems.reduce(
 
                     <div className="flex items-center justify-center gap-[14px] "  >
     <Link href={"/cart"} >  <button onClick={() => setShowCart(false) } className="py-[6px] px-[25px] text-center border-[1px] border-[#000000] rounded-[50px] text-xs font-normal text-[#000000] cursor-pointer transition duration-150 ease-in-out hover:border-[#B88E2F] hover:text-[#B88E2F] "  >Cart</button></Link>
-    <button className="py-[6px] px-[25px] text-center border-[1px] border-[#000000] rounded-[50px] text-xs font-normal text-[#000000]  cursor-pointer  transition duration-150 ease-in-out hover:border-[#B88E2F] hover:text-[#B88E2F]" >Checkout</button>
+ <Link href={"/checkout"} >  <button className="py-[6px] px-[25px] text-center border-[1px] border-[#000000] rounded-[50px] text-xs font-normal text-[#000000]  cursor-pointer  transition duration-150 ease-in-out hover:border-[#B88E2F] hover:text-[#B88E2F]" >Checkout</button></Link>
     <button className="py-[6px] px-[25px] text-center border-[1px] border-[#000000] rounded-[50px] text-xs font-normal text-[#000000]  cursor-pointer  transition duration-150 ease-in-out hover:border-[#B88E2F] hover:text-[#B88E2F]" >Comparison</button>
 </div>
 
