@@ -88,7 +88,7 @@ const addToCart = async () => {
       <div className="bg-[#F4F5F7] w-[160px] h-[350px]  md:w-[240px] lg:w-[285px] md:h-[446px] relative flex flex-col items-stretch justify-between cursor-pointer overflow-hidden group  "  >
 
 
-        <div className=" w-full h-[61%]  "  >
+        <div className=" w-full h-[50%] md:h-[61%]  "  >
           <Image src={image} alt={`${furnitureName} image `} height={100} width={100} className="w-full h-full object-cover " />
 
 
@@ -107,7 +107,7 @@ const addToCart = async () => {
         </div>
 
 
-        <div className="w-full h-[39%]  p-4 flex flex-col items-start justify-center gap-2 "  >
+        <div className="w-full h-[50%] md:h-[39%]  p-4 flex flex-col items-start justify-center gap-2 "  >
           <h2 className="text-[#3A3A3A] font-semibold text-xl md:text-2xl "  >{furnitureName} </h2>
           <p className=" text-[#898989] text-sm md:text-base font-medium "  >{description} </p>
           <div className="w-full flex flex-col md:flex-row items-start md:items-center gap-4  " >
