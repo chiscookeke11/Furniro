@@ -6,6 +6,9 @@ import Input from "./ui/Input"
 import countryList from "react-select-country-list"
 import Select from "react-select"
 import { supabase } from "utils/supabaseClient"
+import { toast } from "sonner"
+import Loader from "./ui/Loader"
+
 
 type CountryOption = {
   label: string
@@ -45,29 +48,56 @@ export default function CheckoutForm() {
     additionalInfo: "",
     paymentMethod: "",
   })
-  const [userId, setUserId] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string | null>(null)
+  const [isProfileFilled, setIsProfileFilled] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    const fetchUserAndProfile = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+      const userId = user?.id ?? null
+      setUserId(userId)
 
-    const fetchUserId = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-setUserId(user?.id ?? null);
+      if (userId) {
+        const { data, error } = await supabase.from("billing_details").select("*").eq("id", userId)
+
+        if (error || !data || data.length === 0) {
+          console.log("Error fetching or no billing data")
+          setIsProfileFilled(false)
+        } else {
+          console.log("User profile data", data)
+          const userData = data[0]
+          setIsProfileFilled(true)
+          setCheckoutFormValues({
+            firstName: userData.first_name,
+            lastName: userData.last_name,
+            companyName: userData.company_name,
+            country: userData.country_name,
+            streetAddress: userData.street_address,
+            city: userData.town,
+            zipCode: userData.zip_code,
+            phoneNumber: userData.phone,
+            emailAddress: userData.email_address,
+            additionalInfo: userData.additional_info,
+            paymentMethod: userData.payment_method,
+          })
+        }
+      }
     }
-fetchUserId()
+
+    fetchUserAndProfile()
   }, [])
 
   const countryOptions = useMemo<CountryOption[]>(() => countryList().getData(), [])
 
-
-
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
- if ((name === "phoneNumber" || name === "zipCode") && !/^\d*\.?\d*$/.test(value)) {
-    return;
-}
-
+    if ((name === "phoneNumber" || name === "zipCode") && !/^\d*\.?\d*$/.test(value)) {
+      return
+    }
 
     setCheckoutFormValues((prev) => ({
       ...prev,
@@ -93,12 +123,45 @@ fetchUserId()
   ]
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    setIsLoading(true)
     e.preventDefault()
     console.log(checkoutFormValues)
 
-    const {data, error} = await supabase
-    .from("billing_details")
-    .insert({
+    if (!userId) {
+      console.log("No user ID available")
+      return
+    }
+
+    // Check if profile already exists to determine if we should update or insert
+    if (isProfileFilled) {
+      // Update existing record
+      const { error } = await supabase
+        .from("billing_details")
+        .update({
+          first_name: checkoutFormValues.firstName,
+          last_name: checkoutFormValues.lastName,
+          company_name: checkoutFormValues.companyName,
+          country_name: checkoutFormValues.country,
+          street_address: checkoutFormValues.streetAddress,
+          town: checkoutFormValues.city,
+          zip_code: checkoutFormValues.zipCode,
+          phone: checkoutFormValues.phoneNumber,
+          email_address: checkoutFormValues.emailAddress,
+          additional_info: checkoutFormValues.additionalInfo,
+          payment_method: checkoutFormValues.paymentMethod,
+        })
+        .eq("id", userId)
+
+      if (error) {
+         setIsLoading(false)
+        console.log("Error updating billing details", error)
+      } else {
+         setIsLoading(false)
+        toast.success("Billing details updated successfully")
+      }
+    } else {
+      // Insert new record
+      const {  error } = await supabase.from("billing_details").insert({
         id: userId,
         first_name: checkoutFormValues.firstName,
         last_name: checkoutFormValues.lastName,
@@ -110,29 +173,18 @@ fetchUserId()
         phone: checkoutFormValues.phoneNumber,
         email_address: checkoutFormValues.emailAddress,
         additional_info: checkoutFormValues.additionalInfo,
-        payment_method: checkoutFormValues.paymentMethod
+        payment_method: checkoutFormValues.paymentMethod,
+      })
 
-    })
-    if (error) {
-        console.log("error uploading billing details", error)
+      if (error) {
+         setIsLoading(false)
+        console.log("Error uploading billing details", error)
+      } else {
+         setIsLoading(false)
+        toast.success("Billing details added successfully")
+        setIsProfileFilled(true)
+      }
     }
-    else {
-        console.log(data)
-    }
-
-    setCheckoutFormValues({
-      firstName: "",
-      lastName: "",
-      companyName: "",
-      country: "",
-      streetAddress: "",
-      city: "",
-      zipCode: "",
-      phoneNumber: "",
-      emailAddress: "",
-      additionalInfo: "",
-      paymentMethod: "",
-    })
   }
 
   return (
@@ -196,6 +248,8 @@ fetchUserId()
           name="country"
           className="basic-single"
           classNamePrefix="select"
+          placeholder="Select Country"
+          required
         />
 
         <Input
@@ -287,7 +341,7 @@ fetchUserId()
           <h3 className="text-[#9F9F9F] text-sm md:text-base font-normal">
             Asgarrrd Sofa <span className="text-xs font-medium ml-2"> x 1</span>
           </h3>
-          <h3 className="text-[#000000] text-sm md:text-base font-light">Rs. 250000000</h3>
+          <h3 className="text-[#000000] text-sm md:text-base font-light">Rs. 250,000.00</h3>
         </div>
 
         <div className="w-full flex items-center justify-between gap-5">
@@ -303,18 +357,24 @@ fetchUserId()
         <div className="w-full flex flex-col items-start">
           <div className="flex flex-col gap-3 items-start w-full border-t-[1px] border-[#D9D9D9] py-5 mt-5 text-sm">
             {paymentMethod.map((method, index) => (
-              <label key={index} htmlFor={method.method} className="w-full gap-2 flex items-center">
+              <label key={index} htmlFor={`payment-${index}`} className="w-full gap-2 flex items-center">
                 <input
                   type="radio"
                   name="paymentMethod"
-                  id={method.method}
+                  id={`payment-${index}`}
                   value={method.method}
                   checked={checkoutFormValues.paymentMethod === method.method}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    setCheckoutFormValues((prev) => ({
+                      ...prev,
+                      paymentMethod: e.target.value,
+                    }))
+                  }}
+                  required={index === 0}
                 />
                 <div className="flex flex-col items-start">
                   {method.method}
-                  <small>{method.explanation}</small>
+                  {method.explanation && <small>{method.explanation}</small>}
                 </div>
               </label>
             ))}
@@ -322,7 +382,7 @@ fetchUserId()
         </div>
 
         <button className="text-[#000000] text-lg md:text-xl font-normal w-[150px] md:w-[318px] border-[1px] border-[#000000] rounded-[8px] md:rounded-[15px] h-[48px] md:h-[58.95px] cursor-pointer font-poppins">
-          Place Order
+          {isProfileFilled ? isLoading ? <Loader/> : "Update"  : isLoading ? <Loader/> : "Place Order"}
         </button>
       </div>
     </form>
