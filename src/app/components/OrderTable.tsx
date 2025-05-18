@@ -11,7 +11,7 @@ interface OrderTableProps {
 
 export default function OrderTable({ orderData, removeItemFromCart }: OrderTableProps) {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {orderData.length === 0 ? (
         <p className="text-center text-lg text-[#B88E2F] font-medium">Your cart is empty.</p>
       ) : (
