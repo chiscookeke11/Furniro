@@ -33,7 +33,7 @@ export default function Page() {
 
 
 
-<div className=" w-full flex flex-col md:flex-row items-start justify-center  my-10 md:my-[80px] "  >
+<div className=" w-full flex flex-col md:flex-row items-start justify-center  my-10 md:my-[80px] gap-10 "  >
 
     <div className="w-full max-w-[393px] flex flex-col items-start md:items-center gap-5 " >
 

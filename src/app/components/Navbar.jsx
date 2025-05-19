@@ -50,7 +50,7 @@ else {
 
       <ul className="hidden lg:flex items-center gap-6">
         {navLinks.map((navLink, index) => (
-          <Link key={index} href={navLink.url}>
+          <Link key={index} href={navLink.url}  >
             <li className="mx-2 text-lg font-medium text-[#000000] hover:text-[#B88E2F] transition-all duration-300 ease-in-out">
               {navLink.label}
             </li>
@@ -97,7 +97,7 @@ else {
           <X className="text-white" size={30} />
         </button>
         {navLinks.map((navLink, index) => (
-          <Link key={index} href={navLink.url}>
+          <Link key={index} href={navLink.url} onClick={() => setOpenMobileMenu(false)} >
             <li className="mx-2 text-base font-medium text-[#FFF3E3] hover:text-white transition-all duration-300 ease-in-out">
               {navLink.label}
             </li>
@@ -109,7 +109,10 @@ else {
           {iconLinks.map((iconLink, index) => (
             <li
               key={index}
-              onClick={() => handleIconClick(iconLink.type)}
+              onClick={() =>{
+                 handleIconClick(iconLink.type)
+                setOpenMobileMenu(false)
+                }}
               className={`mx-1 text-[#FFF3E3] hover:text-white`}
             >
               <Link href={iconLink.url}>{iconLink.icon}</Link>

@@ -8,6 +8,7 @@ import Select from "react-select"
 import { supabase } from "utils/supabaseClient"
 import { toast } from "sonner"
 import Loader from "./ui/Loader"
+import { CartItem } from "interfaces/CartItemInterface"
 
 
 type CountryOption = {
@@ -28,6 +29,7 @@ type CheckoutFormValues = {
   additionalInfo: string
   paymentMethod: string
 }
+
 
 type PaymentMethodOption = {
   method: string
@@ -51,6 +53,7 @@ export default function CheckoutForm() {
   const [userId, setUserId] = useState<string | null>(null)
   const [isProfileFilled, setIsProfileFilled] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [cartData, setCartData] = useState<CartItem[]>([])
 
   useEffect(() => {
     const fetchUserAndProfile = async () => {
@@ -87,8 +90,23 @@ export default function CheckoutForm() {
       }
     }
 
+    const fetchSum = async () => {
+      const {data, error} = await supabase.from("cart").select("*")
+
+
+      if (error) {
+        console.log("error fetching cart data")
+      }
+      else {
+        console.log(data)
+        setCartData(data)
+      }
+    }
+fetchSum()
     fetchUserAndProfile()
   }, [])
+
+  console.log(cartData)
 
   const countryOptions = useMemo<CountryOption[]>(() => countryList().getData(), [])
 
