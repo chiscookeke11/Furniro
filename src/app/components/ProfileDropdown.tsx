@@ -12,6 +12,7 @@ import { supabase } from "utils/supabaseClient"
 import { Button } from "@/components/ui/button"
 import { User } from 'lucide-react'
 import { useFurniroContext } from "context/FurniroContext"
+import Link from "next/link"
 
 export default function ProfileDropdown() {
   const { userId } = useFurniroContext()
@@ -81,7 +82,7 @@ export default function ProfileDropdown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem>View profile</DropdownMenuItem>
+        <Link href={"/checkout"}> <DropdownMenuItem  >View profile</DropdownMenuItem></Link>
         <DropdownMenuItem onClick={handleSignOut}>Sign out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
