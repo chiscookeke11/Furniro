@@ -68,7 +68,7 @@ export default function ResetPasswordPage() {
         // Optionally redirect to dashboard or login
         // router.push('/dashboard');
       } else {
-        setError(result.error || "Password update failed. Try again.")
+        setError("Password update failed. Try again.")
         toast.error("Password update failed")
       }
     } catch (err) {
