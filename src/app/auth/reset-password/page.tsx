@@ -18,7 +18,7 @@ export default function ResetPasswordPage() {
 
   useEffect(() => {
     const checkSession = async () => {
-      const { data, error } = await supabase.auth.getSession()
+      const { data } = await supabase.auth.getSession()
       if (!data.session) {
         toast.error("You must access this page through the reset email link.")
         // Optionally redirect to login page
@@ -73,7 +73,8 @@ export default function ResetPasswordPage() {
       }
     } catch (err) {
       setError("An unexpected error occurred. Please try again.")
-      toast.error("An unexpected error occurred")
+      toast.error("An unexpected error occurred");
+      console.log(err)
     } finally {
       setIsLoading(false)
     }
