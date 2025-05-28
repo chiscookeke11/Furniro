@@ -102,17 +102,54 @@ const signOut = async () => {
   }
 };
 
-
 const signInWithGoogle = async () => {
-  const {error, data} = await supabase.auth.signInWithOAuth({
-     provider: 'google',
-  })
+  const { error, data } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+  });
   if (error) {
-    console.log("error signing in with google")
+    console.log("error signing in with google");
+  } else {
+    console.log(data);
   }
-  else {
-    console.log(data)
-  }
-}
+};
 
-export { signUp, signIn, signOut, signInWithGoogle };
+const resetPassword = async (email: string) => {
+const redirectTo = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/reset-password`
+
+  const { error, data } = await supabase.auth.resetPasswordForEmail(email, {
+   redirectTo,
+  });
+
+  if (error) {
+    console.error("error resetting password", error);
+    toast.error("Failed!");
+  } else {
+    console.log(data);
+    toast.success("Successful! Please check your email for reset link");
+  }
+};
+
+const updateUserPassword = async (newPassword: string) => {
+  const { data, error } = await supabase.auth.updateUser({
+    password: newPassword,
+  });
+
+  if (error) {
+    toast.error("Failed to update password");
+    console.error("error reset", error);
+    return { success: false, error };
+  } else {
+    toast.success("Password updated successfully!");
+    console.log("Password updated successfully", data);
+    return { success: true };
+  }
+};
+
+export {
+  signUp,
+  signIn,
+  signOut,
+  signInWithGoogle,
+  resetPassword,
+  updateUserPassword,
+};

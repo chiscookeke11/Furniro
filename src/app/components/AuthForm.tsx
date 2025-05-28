@@ -8,6 +8,7 @@ import Loader from "./ui/Loader"
 import { signIn, signInWithGoogle, signUp } from "@/lib/SupabaseAuth"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export default function AuthForm() {
   const [authMode, setAuthMode] = useState<"Sign In" | "Sign Up">("Sign In")
@@ -167,7 +168,7 @@ export default function AuthForm() {
         errorMessage={errors.password}
       />
 
-      <p className="ml-auto cursor-pointer text-sm font-medium text-[#B88E2F]">Forgot Password?</p>
+      <p className="ml-auto cursor-pointer text-sm font-medium text-[#B88E2F]"> <Link href={"/auth/forget-password"} >Forgot Password?</Link></p>
 
       <button
         type="submit"
@@ -189,7 +190,7 @@ export default function AuthForm() {
           Already have an account? <span className="text-[#B88E2F]">Sign In</span>
         </p>
       )}
-  <button className="cursor-pointer"  onClick={signInWithGoogle} type="button" >Sign in With google</button>
+      <button className="cursor-pointer" onClick={signInWithGoogle} type="button" >Sign in With google</button>
     </form>
   )
 }

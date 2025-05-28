@@ -1,4 +1,5 @@
 
+import { addToFavourite } from "@/lib/SupabaseCrudFunc";
 import { ArrowDownUp, Heart, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +22,7 @@ interface ProductCardProps {
 }
 
 
-export default function ProductCard({ image, furnitureName, description, price, newPrice, id, }: ProductCardProps) {
+export default function ProductCard({ image, furnitureName, description, price, newPrice, id, category }: ProductCardProps) {
 
 
 
@@ -65,7 +66,6 @@ const addToCart = async () => {
     const { error: insertError } = await supabase
       .from("cart")
       .insert({
-        product_id: id,
         product_name: furnitureName,
         product_price: price,
         product_image: image,
@@ -78,6 +78,17 @@ const addToCart = async () => {
       toast("Successfully added to cart");
     }
   }
+};
+
+const likeItem = async () => {
+  await addToFavourite({
+    image,
+    furnitureName,
+    description,
+    price,
+    newPrice,
+    category,
+  });
 };
 
 
@@ -147,8 +158,9 @@ const addToCart = async () => {
 
             <button
               onClick={(e) => {
-                e.stopPropagation()
+                e.stopPropagation();
                 e.preventDefault();
+                likeItem()
               }}
               className="text-sm md:text-base font-semibold text-[#ffffff] flex items-center justify-center gap-0.5 cursor-pointer hover:text-[#B88E2F] transition-all ease-in-out duration-150" ><Heart size={15} /> Like</button>
 

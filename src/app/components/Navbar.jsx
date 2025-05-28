@@ -23,7 +23,7 @@ const Navbar = () => {
     // Only show User icon if NOT logged in
     ...(isLoggedIn ? [] : [{ icon: <User />, url: "/auth", type: "user" }]),
     { icon: <Search />, url: "home", type: "search" },
-    { icon: <Heart />, url: "home", type: "heart" },
+    { icon: <Heart />, url: "/favourites", type: "heart" },
     { icon: <ShoppingCart />, url: "#", type: "cart" },
   ];
 

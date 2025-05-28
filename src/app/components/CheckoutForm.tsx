@@ -98,7 +98,6 @@ export default function CheckoutForm() {
         console.log("error fetching cart data")
       }
       else {
-        console.log(data)
         setCartData(data)
       }
     }
@@ -204,6 +203,14 @@ fetchSum()
       }
     }
   }
+
+
+  const subtotal = cartData.reduce(
+    (acc, Item) => acc + Item.product_price * Item.product_amount, 0
+  );
+
+  const VAT = subtotal * 0.0005;
+
 
   return (
     <form
@@ -355,21 +362,28 @@ fetchSum()
           <h2 className="text-lg md:text-2xl text-[#000000] font-medium">Subtotal</h2>
         </div>
 
-        <div className="w-full flex items-center justify-between gap-5">
+     {cartData.map((item, index) => (
+         <div key={index} className="w-full flex items-center justify-between gap-5">
           <h3 className="text-[#9F9F9F] text-sm md:text-base font-normal">
-            Asgarrrd Sofa <span className="text-xs font-medium ml-2"> x 1</span>
+            {item.product_name} <span className="text-xs font-medium ml-2"> x 1</span>
           </h3>
-          <h3 className="text-[#000000] text-sm md:text-base font-light">Rs. 250,000.00</h3>
+          <h3 className="text-[#000000] text-sm md:text-base font-light">Rs. {(item.product_price).toLocaleString("en-us")} </h3>
         </div>
+     ))}
 
         <div className="w-full flex items-center justify-between gap-5">
           <h3 className="text-[#000000] text-sm md:text-base font-normal">Subtotal</h3>
-          <h3 className="text-[#000000] text-sm md:text-base font-light">Rs. 250,000.00</h3>
+          <h3 className="text-[#000000] text-sm md:text-base font-light">Rs. {(subtotal).toLocaleString("en-us")} </h3>
+        </div>
+
+        <div className="w-full flex items-center justify-between gap-5">
+          <h3 className="text-[#000000] text-sm md:text-base font-normal">VAT (0.5%) </h3>
+          <h3 className="text-[#000000] text-sm md:text-base font-light">Rs. {(VAT).toLocaleString("en-us")} </h3>
         </div>
 
         <div className="w-full flex items-center justify-between gap-5">
           <h3 className="text-[#000000] text-sm md:text-base font-normal">Total</h3>
-          <h3 className="text-xl md:text-2xl text-[#B88E2F] font-bold">Rs. 250,000.00</h3>
+          <h3 className="text-xl md:text-2xl text-[#B88E2F] font-bold">Rs. {(subtotal + VAT).toLocaleString("en-us")} </h3>
         </div>
 
         <div className="w-full flex flex-col items-start">
