@@ -68,12 +68,12 @@ export default function ResetPasswordPage() {
         // Optionally redirect to dashboard or login
         // router.push('/dashboard');
       } else {
-        setError("Password update failed. Try again.")
+        setError("Password update failed. Try again")
         toast.error("Password update failed")
       }
     } catch (err) {
       setError("An unexpected error occurred. Please try again.")
-      toast.error("An unexpected error occurred");
+      toast.error("An expected error occurred");
       console.log(err)
     } finally {
       setIsLoading(false)
